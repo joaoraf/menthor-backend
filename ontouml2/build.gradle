@@ -1,0 +1,19 @@
+
+group = 'net.menthor'
+version '1.0'
+
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {    
+	compile "org.codehaus.groovy:groovy-all:2.4.5"
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.7'
+}
