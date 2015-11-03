@@ -1,5 +1,11 @@
-package net.menthor.ontouml2;
+package net.menthor.ontouml2
 
-interface Literal extends Element {
+import net.menthor.ontouml2.traits.Element;
 
+class Literal implements Element {
+
+    String text
+    DataType owner
+    float upperBoundRegion
+    float lowerBoundRegion
 }

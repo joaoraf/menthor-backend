@@ -1,5 +1,10 @@
-package net.menthor.ontouml2;
+package net.menthor.ontouml2
 
-interface Comment extends Element {
+import net.menthor.ontouml2.traits.ContainedElement
+import net.menthor.ontouml2.traits.Element
 
+class Comment implements Element {
+
+    String text
+    ContainedElement owner
 }

@@ -1,5 +1,8 @@
-package net.menthor.ontouml2;
+package net.menthor.ontouml2
 
-interface Package extends Container, ContainedElement {
+import net.menthor.ontouml2.traits.ContainedElement
+import net.menthor.ontouml2.traits.Container;
+
+class Package implements Container, ContainedElement {
 
 }

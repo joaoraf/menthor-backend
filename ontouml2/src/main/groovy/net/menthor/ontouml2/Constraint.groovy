@@ -1,5 +1,12 @@
-package net.menthor.ontouml2;
+package net.menthor.ontouml2
 
-interface Constraint extends ContainedElement, NamedElement {
+import net.menthor.ontouml2.stereotypes.ConstraintStereotype
+import net.menthor.ontouml2.traits.ContainedElement;
 
+class Constraint implements ContainedElement {
+
+    ConstraintStereotype stereotype
+    String context
+    String expression
+    String identifier
 }

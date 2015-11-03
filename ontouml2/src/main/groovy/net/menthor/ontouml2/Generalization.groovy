@@ -1,5 +1,11 @@
-package net.menthor.ontouml2;
+package net.menthor.ontouml2
 
-interface Generalization extends ContainedElement {
+import net.menthor.ontouml2.traits.Classifier
+import net.menthor.ontouml2.traits.ContainedElement;
 
+class Generalization implements ContainedElement {
+
+    Classifier general
+    Classifier specific
+    GeneralizationSet generalizationSet
 }

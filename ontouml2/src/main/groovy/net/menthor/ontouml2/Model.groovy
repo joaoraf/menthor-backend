@@ -1,5 +1,7 @@
 package net.menthor.ontouml2
 
-interface Model extends Container {
+import net.menthor.ontouml2.traits.Container
+
+class Model implements Container {
 
 }
