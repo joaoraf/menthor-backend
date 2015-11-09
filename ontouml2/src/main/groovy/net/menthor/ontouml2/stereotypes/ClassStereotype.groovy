@@ -11,13 +11,13 @@ enum ClassStereotype {
 	QUALITY("Quality"),
 	ROLE("Role"),
 	PHASE("Phase"),
-	SUB_KIND("SubKind"),
+	SUBKIND("SubKind"),
 	CATEGORY("Category"),
 	MIXIN("Mixin"),
-	ROLE_MIXIN("RoleMixin"),
-	PHASE_MIXIN("PhaseMixin"),
+	ROLEMIXIN("RoleMixin"),
+	PHASEMIXIN("PhaseMixin"),
 	EVENT("Event"),
-	HIGH_ORDER("HighOrder");
+	HIGHORDER("HighOrder");
 
 	final String name;
 	static final Map map

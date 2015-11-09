@@ -1,16 +1,51 @@
 package net.menthor.ontouml2.traits
 
 import net.menthor.ontouml2.Attribute
-import net.menthor.ontouml2.EndPoint
+import org.codehaus.jackson.annotate.JsonTypeInfo
 
+@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 trait Type implements Classifier {
 
-    List<Attribute> attributes
+    protected List<Attribute> attributes
+
+    //=============================
+    // Getters
+    //=============================
+
+    List<Attribute> getAttributes() { return attributes }
+
+    //=============================
+    // Setters were overwritten to ensure
+    // opposite ends in the metamodel
+    //=============================
+
+    void setAttribute(Attribute attr){
+        if(attr==null) return
+        if(!attributes.contains(attr)){
+            attributes.add(attr)
+        }
+        //Ensure the opposite end
+        attr.setOwner(this)
+    }
+
+    void setAttributes(List<Attribute> attributes){
+        if(attributes==null || attributes==[]){
+            this.attributes.clear()
+            return
+        }
+        attributes.each{ a ->
+            setAttribute(a)
+        }
+    }
+
+    //=============================
+    // Opposite Types
+    //=============================
 
     /** Returns all types directly connected to this type through a relationship. */
-    List<Type> relatedTypes(){
+    List<Type> oppositeTypes(){
         def result = []
-        endPoints().each{ ep ->
+        oppositeEndPoints().each{ ep ->
             def t = ep.getClassifier();
             if(t!=null){
                 result.add(t as Type)
@@ -20,9 +55,9 @@ trait Type implements Classifier {
     }
 
     /**Returns all types directly and indirectly connected to this type through a relationship. */
-    List<Type> allRelatedTypes(){
+    List<Type> allOppositeTypes(){
         def result = []
-        allEndPoints().each { ep ->
+        allOppositeEndPoints().each { ep ->
             def t = ep.getClassifier();
             if(t!=null){
                 result.add(t as Type)

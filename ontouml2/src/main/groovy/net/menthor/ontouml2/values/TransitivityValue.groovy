@@ -2,10 +2,10 @@ package net.menthor.ontouml2.values
 
 enum TransitivityValue {
 
-	UNSET(0, "Unset", "Unset"),
-	TRANSITIVE(0, "Transitive", "Transitive"),
-	INTRANSITIVE(0, "Intransitive", "Intransitive"),
-	NON_TRANSITIVE(0, "NonTransitive", "NonTransitive");
+	UNSET("Unset"),
+	TRANSITIVE("Transitive"),
+	INTRANSITIVE("Intransitive"),
+	NON_TRANSITIVE("NonTransitive");
 
 	final String name;
 	static final Map map

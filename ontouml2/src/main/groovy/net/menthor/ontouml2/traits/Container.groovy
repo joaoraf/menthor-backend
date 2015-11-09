@@ -6,10 +6,51 @@ import net.menthor.ontouml2.Generalization
 import net.menthor.ontouml2.GeneralizationSet
 import net.menthor.ontouml2.Relationship;
 import net.menthor.ontouml2.Class
+import net.menthor.ontouml2.Factory
+import net.menthor.ontouml2.stereotypes.ClassStereotype
+import net.menthor.ontouml2.stereotypes.ConstraintStereotype
+import net.menthor.ontouml2.stereotypes.DataTypeStereotype
+import net.menthor.ontouml2.stereotypes.RelationshipStereotype
+import org.codehaus.jackson.annotate.JsonTypeInfo
 
+@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 trait Container implements NamedElement {
 
-    List<ContainedElement> elements
+    protected List<ContainedElement> elements = []
+
+    //=============================
+    // Getters
+    //=============================
+
+    List<ContainedElement> getElements() { return elements }
+
+    //=============================
+    // Setters were overwritten to ensure
+    // opposite ends in the metamodel
+    //=============================
+
+    void setElement(ContainedElement ce){
+        if(ce == null) return
+        if(!elements.contains(ce)){
+            elements.add(ce)
+        }
+        //Ensure the opposite end
+        ce.setContainer(this)
+    }
+
+    void setElements(List<ContainedElement> elements){
+       if(elements==null || elements == []){
+           this.elements.clear()
+           return
+       }
+       elements.each{ e ->
+           setElement(e)
+       }
+    }
+
+    //=============================
+    // Contained Element
+    //=============================
 
     /* Search for the elements of a particular type in this container. */
     List<ContainedElement> elements(java.lang.Class type){
@@ -161,5 +202,50 @@ trait Container implements NamedElement {
     /** All classifiers of this container (searching in depth) */
     List<Classifier> allClassifiers(){
         return allElements(Classifier.class)
+    }
+
+    //=============================
+    // Creation
+    //=============================
+
+    Package createPackage(String name){
+        return Factory.createPackage(name,this)
+    }
+
+    Class createClass(ClassStereotype c, String name){
+        return Factory.createClass(c,name,this)
+    }
+
+    DataType createDataType(DataTypeStereotype c, String name){
+        return Factory.createDataType(c,name,this)
+    }
+
+    Relationship createRelationship(RelationshipStereotype stereo, Classifier source, Classifier target){
+        return Factory.createRelationship(stereo, source, target, this)
+    }
+
+    Relationship createRelationship(RelationshipStereotype stereo, Classifier source, int sourceLower, int sourceUpper, String name,
+        Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(stereo, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Generalization createGeneralization(Classifier source, Classifier target){
+        return Factory.createGeneralization(source, target, this)
+    }
+
+    GeneralizationSet createGeneralizationSet(boolean isCovering, boolean isDisj, List<Generalization> gens){
+        return Factory.createGeneralizationSet(isCovering, isDisj, gens, this)
+    }
+
+    GeneralizationSet createPartition(List<Classifier> specifics, Classifier general){
+        return Factory.createPartition(specifics, general, this)
+    }
+
+    Constraint createConstraint(String context, ConstraintStereotype stereo, String identifier, String expression){
+        return Factory.createConstraint(context, stereo, identifier, expression, this)
+    }
+
+    DataType createEnumeration(String name, List<String> textValues){
+        return Factory.createEnumeration(name, textValues)
     }
 }

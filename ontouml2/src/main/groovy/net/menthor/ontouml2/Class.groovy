@@ -4,106 +4,179 @@ import net.menthor.ontouml2.stereotypes.ClassStereotype
 import net.menthor.ontouml2.stereotypes.QualityStereotype
 import net.menthor.ontouml2.traits.Type
 import net.menthor.ontouml2.values.ClassificationValue
-import net.menthor.ontouml2.values.ExistenceValue;
+import net.menthor.ontouml2.values.ExistenceValue
+import org.codehaus.jackson.annotate.JsonIgnore
+import org.codehaus.jackson.annotate.JsonTypeInfo
 
+@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 class Class implements Type {
 
-    ClassStereotype stereotype
-    QualityStereotype qualityStereotype //in case of qualities
-    boolean isAbstract
-    boolean isDerived
-    boolean isExtensional //collective
-    ExistenceValue existenceValue //identity providers
-    ClassificationValue classificationValue //anti-rigid classes
+    protected ClassStereotype stereotype
+    protected boolean abstract_
+    protected boolean derived
+
+    protected QualityStereotype qualityStereotype //in case of qualities
+    protected boolean extensional //collective
+    protected ExistenceValue existenceValue //identity providers
+    protected ClassificationValue classificationValue //anti-rigid classes
+    protected GeneralizationSet generalizationSet //in cast of powertypes
+
+    //=============================
+    // Getters
+    //=============================
+
+    ClassStereotype getStereotype(){ return stereotype }
+
+    QualityStereotype getQualityStereotype() { return qualityStereotype }
+
+    boolean isAbstract_(){ return abstract_ }
+
+    boolean isDerived(){ return derived }
+
+    boolean isExtensional(){ return extensional }
+
+    ExistenceValue getExistenceValue(){ return existenceValue }
+
+    ClassificationValue getClassificationValue() { return classificationValue }
+
+    @JsonIgnore
+    GeneralizationSet getGeneralizationSet() { return generalizationSet }
+
+    //=============================
+    // Setters
+    //=============================
+
+    void setStereotype(ClassStereotype stereo){ stereotype = stereo }
+
+    void setQualityStereotype(QualityStereotype stereo) { qualityStereotype = stereo }
+
+    void setIsAbstract(boolean value){ isAbstract  = value}
+
+    void setIsDerived(boolean value){ derived = value }
+
+    void setIsExtensional(boolean value){ extensional = value }
+
+    void setExistenceValue(ExistenceValue value){ existenceValue = value }
+
+    void setClassificationValue(ClassificationValue value) { classificationValue = value }
+
+    void setGeneralizationSet(GeneralizationSet gs) { generalizationSet = gs }
 
     //================================
     //Stereotype Checking
     //================================
 
-    boolean isKind(){
-        stereotype==ClassStereotype.KIND
-    }
-    boolean isSubKind(){
-        stereotype==ClassStereotype.SUB_KIND
-    }
-    boolean isCollective(){
-        stereotype==ClassStereotype.COLLECTIVE
-    }
-    boolean isQuantity(){
-        stereotype==ClassStereotype.QUANTITY
-    }
-    boolean isRelator(){
-        stereotype==ClassStereotype.RELATOR
-    }
-    boolean isMode(){
-        stereotype==ClassStereotype.MODE
-    }
-    boolean isQuality(){
-        stereotype==ClassStereotype.QUALITY
-    }
-    boolean isRole(){
-        stereotype==ClassStereotype.ROLE
-    }
-    boolean isRoleMixin(){
-        stereotype==ClassStereotype.ROLE_MIXIN
-    }
-    boolean isPhaseMixin(){
-        stereotype==ClassStereotype.PHASE_MIXIN
-    }
-    boolean isPhase(){
-        stereotype==ClassStereotype.PHASE
-    }
-    boolean isCategory(){
-        stereotype==ClassStereotype.CATEGORY
-    }
-    boolean isMixin(){
-        stereotype==ClassStereotype.MIXIN
-    }
-    boolean isEvent(){
-        stereotype==ClassStereotype.EVENT
-    }
-    boolean isHighOrder(){
-        stereotype==ClassStereotype.HIGH_ORDER
-    }
+    @JsonIgnore
+    boolean isKind(){ stereotype==ClassStereotype.KIND }
+
+    @JsonIgnore
+    boolean isSubKind(){ stereotype==ClassStereotype.SUBKIND }
+
+    @JsonIgnore
+    boolean isCollective(){ stereotype==ClassStereotype.COLLECTIVE }
+
+    @JsonIgnore
+    boolean isQuantity(){ stereotype==ClassStereotype.QUANTITY }
+
+    @JsonIgnore
+    boolean isRelator(){ stereotype==ClassStereotype.RELATOR }
+
+    @JsonIgnore
+    boolean isMode(){ stereotype==ClassStereotype.MODE }
+
+    @JsonIgnore
+    boolean isQuality(){ stereotype==ClassStereotype.QUALITY }
+
+    @JsonIgnore
+    boolean isRole(){ stereotype==ClassStereotype.ROLE }
+
+    @JsonIgnore
+    boolean isRoleMixin(){ stereotype==ClassStereotype.ROLEMIXIN }
+
+    @JsonIgnore
+    boolean isPhaseMixin(){ stereotype==ClassStereotype.PHASEMIXIN }
+
+    @JsonIgnore
+    boolean isPhase(){ stereotype==ClassStereotype.PHASE }
+
+    @JsonIgnore
+    boolean isCategory(){ stereotype==ClassStereotype.CATEGORY }
+
+    @JsonIgnore
+    boolean isMixin(){ stereotype==ClassStereotype.MIXIN }
+
+    @JsonIgnore
+    boolean isEvent(){ stereotype==ClassStereotype.EVENT }
+
+    @JsonIgnore
+    boolean isHighOrder(){ stereotype==ClassStereotype.HIGHORDER }
+
+    @JsonIgnore
     boolean isRigid() {
         isKind() || isCollective() || isQuantity() ||isRelator() || isMode() || isQuality() ||isSubKind() || isCategory()
     }
+
+    @JsonIgnore
     boolean isNonRigid() {
         isRole()|| isPhase() || isRoleMixin() || isPhaseMixin() || isMixin()
     }
+
+    @JsonIgnore
     boolean isAntiRigid() {
         isRole() || isPhase() || isRoleMixin() || isPhaseMixin()
     }
+
+    @JsonIgnore
     boolean isSemiRigid() {
         isMixin()
     }
+
+    @JsonIgnore
     boolean isPerceivableQuality() {
         isQuality() && qualityStereotype!=null && qualityStereotype==QualityStereotype.PERCEIVABLE
     }
+
+    @JsonIgnore
     boolean isNonPerceivableQuality() {
         isQuality() && qualityStereotype!=null && qualityStereotype==QualityStereotype.NON_PERCEIVABLE
     }
+
+    @JsonIgnore
     boolean isNominalQuality() {
         isQuality() && qualityStereotype!=null && qualityStereotype==QualityStereotype.NOMINAL
     }
+
+    @JsonIgnore
     boolean isEndurantClass() {
         !(isEvent() || isHighOrder())
     }
+
+    @JsonIgnore
     boolean isIntrinsicMoment() {
         isNonQualitativeIntrinsicMoment() || isQualitativeIntrinsicMoment()
     }
+
+    @JsonIgnore
     boolean isSubstanceSortalClass() {
         isKind() || isCollective() || isQuantity()
     }
+
+    @JsonIgnore
     boolean isMomentClass() {
         isRelator() || isMode() || isQuality()
     }
+
+    @JsonIgnore
     boolean isIdentityProviderClass() {
         isKind() || isQuantity() || isCollective() || isRelator() || isMode() || isQuality()
     }
+
+    @JsonIgnore
     boolean isMixinClass() {
         isMixin() || isRoleMixin() || isPhaseMixin() || isCategory()
     }
+
+    @JsonIgnore
     boolean isAntiRigidMixinClass() {
         isRoleMixin() || isPhaseMixin()
     }
@@ -118,6 +191,7 @@ class Class implements Type {
      * 2) if it is a subKind or role/phase with exactly one identity provider of the type Quantity, or,
      * 3) if it is a mixin class in which all their children are quantities.
      */
+    @JsonIgnore
     boolean isAmountOfMatter() {
         if(isQuantity()) return true;
         if(isRole() || isPhase() || isSubKind()){
@@ -149,6 +223,7 @@ class Class implements Type {
      * 2) if it is a subKind or role/phase with exactly one identity provider of the type kind, or,
      * 3) if it is a mixin class in which all their children are functional complexes.
      */
+    @JsonIgnore
     boolean isFunctionalComplex(){
         if(isKind()) {
             return true
@@ -184,6 +259,7 @@ class Class implements Type {
      * 2) if it is a subKind or role/phase with exactly one identity provider of the type Collective, or,
      * 3) if it is a mixin class in which all their children are collectives.
      */
+    @JsonIgnore
     boolean isCollection(){
         if(isCollective()) {
             return true
@@ -219,6 +295,7 @@ class Class implements Type {
      * 2) if it is a subKind or role/phase with exactly one identity provider being a relator, mode or quality, or,
      * 3) if it is a mixin class in which all their children are relators, qualities or modes.
      */
+    @JsonIgnore
     boolean isMoment(){
         if(isMomentClass()) {
             return true
@@ -254,6 +331,7 @@ class Class implements Type {
      * 2) if it is a subKind or role/phase with exactly one identity provider being a truth maker, or,
      * 3) if it is a mixin class in which all their children are truth makers.
      */
+    @JsonIgnore
     boolean isTruthMaker(){
         if(isRelator()) {
             return true
@@ -289,6 +367,7 @@ class Class implements Type {
      * 2) if it is a subKind or role/phase with exactly one identity provider being a non qualitative intrinsic moment, or,
      * 3) if it is a mixin class in which all their children are non qualitative intrinsic moment.
      */
+    @JsonIgnore
     boolean isNonQualitativeIntrinsicMoment() {
         if(isMode()) {
             return true
@@ -324,6 +403,7 @@ class Class implements Type {
      * 2) if it is a subKind or role/phase with exactly one identity provider being a qualitative intrinsic moment, or,
      * 3) if it is a mixin class in which all their children are qualitative intrinsic moment.
      */
+    @JsonIgnore
     boolean isQualitativeIntrinsicMoment(){
         if(isQuality()) {
             return true

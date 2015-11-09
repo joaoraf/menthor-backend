@@ -1,17 +1,24 @@
+buildscript {
+	repositories {
+		jcenter()
+		mavenCentral()
+	}
+}
 
-group = 'net.menthor'
-version '1.0'
+group = "net.menthor"
+version = "1.0"
 
 apply plugin: 'groovy'
 apply plugin: 'idea'
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
-dependencies {    
-	compile "org.codehaus.groovy:groovy-all:2.4.4"
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+dependencies {
+	compile "org.codehaus.groovy:groovy-all:2.4.5"
+	compile "com.fasterxml.jackson.core:jackson-core:2.6.3"
+	compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.0'
 }
 
 task wrapper(type: Wrapper) {
