@@ -353,17 +353,17 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": false,
+                    "lowerBound": 1,
                     "upperBound": -1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": true,
+                    "lowerBound": 1,
                     "upperBound": 1,
                     "ordered": false
                 }
@@ -377,17 +377,17 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": false,
+                    "lowerBound": 1,
                     "upperBound": 1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": true,
+                    "lowerBound": 1,
                     "upperBound": -1,
                     "ordered": false
                 }
@@ -401,17 +401,17 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": false,
+                    "lowerBound": 1,
                     "upperBound": 1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": true,
+                    "lowerBound": 1,
                     "upperBound": -1,
                     "ordered": false
                 }
@@ -425,17 +425,17 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": false,
+                    "lowerBound": 1,
                     "upperBound": 1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": true,
+                    "lowerBound": 1,
                     "upperBound": -1,
                     "ordered": false
                 }
@@ -449,17 +449,17 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": false,
+                    "lowerBound": 1,
                     "upperBound": 1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": true,
+                    "lowerBound": 1,
                     "upperBound": 1,
                     "ordered": false
                 }
@@ -473,17 +473,17 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": false,
+                    "lowerBound": 1,
                     "upperBound": -1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": false,
+                    "lowerBound": 1,
                     "upperBound": 1,
                     "ordered": false
                 }
@@ -496,17 +496,17 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": true,
+                    "lowerBound": 1,
                     "upperBound": -1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "lowerBound": 1,
                     "derived": false,
                     "dependency": true,
+                    "lowerBound": 1,
                     "upperBound": -1,
                     "ordered": false
                 }

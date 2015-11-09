@@ -3,11 +3,11 @@ package net.menthor.ontouml2.stereotypes
 enum RelationshipStereotype {
 
 	UNSET("Unset"),
-	COMPONENT_OF("ComponentOf"),
-	MEMBER_OF("MemberOf"),
-	SUB_COLLECTION_OF("SubCollectionOf"),
-	SUB_QUANTITY_OF("SubQuantityOf"),
-	QUA_PART_OF("QuaPartOf"),
+    COMPONENTOF("ComponentOf"),
+    MEMBEROF("MemberOf"),
+    SUBCOLLECTIONOF("SubCollectionOf"),
+    SUBQUANTITYOF("SubQuantityOf"),
+    QUAPARTOF("QuaPartOf"),
 	CONSTITUTION("Constitution"),
 	CHARACTERIZATION("Characterization"),
 	MEDIATION("Mediation"),
@@ -16,10 +16,10 @@ enum RelationshipStereotype {
 	DERIVATION("Derivation"),
 	STRUCTURATION("Structuration"),
 	PARTICIPATION("Participation"),
-	SUB_EVENT_OF("SubEventOf"),
+    SUBEVENTOF("SubEventOf"),
 	CAUSATION("Causation"),
 	TEMPORAL("Temporal"),
-	INSTANCE_OF("InstanceOf");
+    INSTANCEOF("InstanceOf");
 
     final String name;
     static final Map map

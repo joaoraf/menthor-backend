@@ -178,19 +178,19 @@ class Relationship implements Classifier {
     //================================
 
     @JsonIgnore
-    boolean isComponentOf(){ stereotype==RelationshipStereotype.COMPONENT_OF }
+    boolean isComponentOf(){ stereotype==RelationshipStereotype.COMPONENTOF }
 
     @JsonIgnore
-    boolean isMemberOf(){ stereotype==RelationshipStereotype.MEMBER_OF }
+    boolean isMemberOf(){ stereotype==RelationshipStereotype.MEMBEROF }
 
     @JsonIgnore
-    boolean isSubCollectionOf(){ stereotype==RelationshipStereotype.SUB_COLLECTION_OF }
+    boolean isSubCollectionOf(){ stereotype==RelationshipStereotype.SUBCOLLECTIONOF }
 
     @JsonIgnore
-    boolean isSubQuantityOf(){ stereotype==RelationshipStereotype.SUB_QUANTITY_OF }
+    boolean isSubQuantityOf(){ stereotype==RelationshipStereotype.SUBQUANTITYOF }
 
     @JsonIgnore
-    boolean isQuaPartOf(){ stereotype==RelationshipStereotype.QUA_PART_OF }
+    boolean isQuaPartOf(){ stereotype==RelationshipStereotype.QUAPARTOF }
 
     @JsonIgnore
     boolean isConstitution(){ stereotype==RelationshipStereotype.CONSTITUTION }
@@ -214,7 +214,7 @@ class Relationship implements Classifier {
     boolean isParticipation(){ stereotype==RelationshipStereotype.PARTICIPATION }
 
     @JsonIgnore
-    boolean isSubEventOf(){ stereotype==RelationshipStereotype.SUB_EVENT_OF }
+    boolean isSubEventOf(){ stereotype==RelationshipStereotype.SUBEVENTOF }
 
     @JsonIgnore
     boolean isCausation(){ stereotype==RelationshipStereotype.CAUSATION }
@@ -223,7 +223,7 @@ class Relationship implements Classifier {
     boolean isTemporal(){ stereotype==RelationshipStereotype.TEMPORAL }
 
     @JsonIgnore
-    boolean isInstanceOf(){ stereotype==RelationshipStereotype.INSTANCE_OF }
+    boolean isInstanceOf(){ stereotype==RelationshipStereotype.INSTANCEOF }
 
     @JsonIgnore
     boolean isDerivation(){ stereotype==RelationshipStereotype.DERIVATION }

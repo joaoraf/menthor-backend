@@ -216,17 +216,225 @@ trait Container implements NamedElement {
         return Factory.createClass(c,name,this)
     }
 
+    Class createKind(String name){
+        return Factory.createClass(ClassStereotype.KIND,name,this)
+    }
+
+    Class createCollective(String name){
+        return Factory.createClass(ClassStereotype.COLLECTIVE,name,this)
+    }
+
+    Class createQuantity(String name){
+        return Factory.createClass(ClassStereotype.QUANTITY,name,this)
+    }
+
+    Class createSubKind(String name){
+        return Factory.createClass(ClassStereotype.SUBKIND,name,this)
+    }
+
+    Class createPhase(String name){
+        return Factory.createClass(ClassStereotype.PHASE,name,this)
+    }
+
+    Class createRole(String name){
+        return Factory.createClass(ClassStereotype.ROLE,name,this)
+    }
+
+    Class createMixin(String name){
+        return Factory.createClass(ClassStereotype.MIXIN,name,this)
+    }
+
+    Class createCategory(String name){
+        return Factory.createClass(ClassStereotype.CATEGORY,name,this)
+    }
+
+    Class createRoleMixin(String name){
+        return Factory.createClass(ClassStereotype.ROLEMIXIN,name,this)
+    }
+
+    Class createPhaseMixin(String name){
+        return Factory.createClass(ClassStereotype.PHASEMIXIN,name,this)
+    }
+
+    Class createMode(String name){
+        return Factory.createClass(ClassStereotype.MODE,name,this)
+    }
+
+    Class createRelator(String name){
+        return Factory.createClass(ClassStereotype.RELATOR,name,this)
+    }
+
+    Class createQuality(String name){
+        return Factory.createClass(ClassStereotype.QUALITY,name,this)
+    }
+
+    Class createEvent(String name){
+        return Factory.createClass(ClassStereotype.EVENT,name,this)
+    }
+
+    Class createHighorder(String name){
+        return Factory.createClass(ClassStereotype.HIGHORDER,name,this)
+    }
+
     DataType createDataType(DataTypeStereotype c, String name){
         return Factory.createDataType(c,name,this)
+    }
+
+    DataType createDimension(String name){
+        return Factory.createDataType(DataTypeStereotype.DIMENSION,name,this)
+    }
+
+    DataType createDomain(String name){
+        return Factory.createDataType(DataTypeStereotype.DOMAIN,name,this)
+    }
+
+    DataType createEnumeration(String name, List<String> textValues){
+        return Factory.createEnumeration(name, textValues)
     }
 
     Relationship createRelationship(RelationshipStereotype stereo, Classifier source, Classifier target){
         return Factory.createRelationship(stereo, source, target, this)
     }
 
+    Relationship createDerivation(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.DERIVATION, source, target, this)
+    }
+
+    Relationship createTemporal(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.TEMPORAL, source, target, this)
+    }
+
+    Relationship createStructuration(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.STRUCTURATION, source, target, this)
+    }
+
+    Relationship createCausation(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.CAUSATION, source, target, this)
+    }
+
+    Relationship createCharacterization(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.CHARACTERIZATION, source, target, this)
+    }
+
+    Relationship createComponentOf(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.COMPONENTOF, source, target, this)
+    }
+
+    Relationship createConsitution(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.CONSTITUTION, source, target, this)
+    }
+
+    Relationship createFormal(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.FORMAL, source, target, this)
+    }
+
+    Relationship createInstanceOf(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.INSTANCEOF, source, target, this)
+    }
+
+    Relationship createMaterial(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.MATERIAL, source, target, this)
+    }
+
+    Relationship createMediation(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.MEDIATION, source, target, this)
+    }
+
+    Relationship createMemberOf(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.MEMBEROF, source, target, this)
+    }
+
+    Relationship createParticipation(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.PARTICIPATION, source, target, this)
+    }
+
+    Relationship createQuaPartOf(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.QUAPARTOF, source, target, this)
+    }
+
+    Relationship createSubCollectionOf(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.SUBCOLLECTIONOF, source, target, this)
+    }
+
+    Relationship createSubEventOf(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.SUBEVENTOF, source, target, this)
+    }
+
+    Relationship createSubQuantityOf(Classifier source, Classifier target){
+        return Factory.createRelationship(RelationshipStereotype.SUBQUANTITYOF, source, target, this)
+    }
+
     Relationship createRelationship(RelationshipStereotype stereo, Classifier source, int sourceLower, int sourceUpper, String name,
         Classifier target, int targetLower, int targetUpper){
         return Factory.createRelationship(stereo, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createMediation(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.MEDIATION, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createMaterial(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.MATERIAL, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createFormal(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.FORMAL, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createCharacterization(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.CHARACTERIZATION, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createCausation(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.CAUSATION, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createComponentOf(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.COMPONENTOF, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createConstitution(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.CONSTITUTION, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createDerivation(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.DERIVATION, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createInstanceOf(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.INSTANCEOF, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createMemberOf(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.MEMBEROF, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createParticipation(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.PARTICIPATION, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createQuaPartOf(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.QUAPARTOF, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createStructuration(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.STRUCTURATION, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createSubCollectionOf(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.SUBCOLLECTIONOF, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createSubEventOf(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.SUBEVENTOF, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createSubQuantityOf(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.SUBQUANTITYOF, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
+    }
+
+    Relationship createTemporal(Classifier source, int sourceLower, int sourceUpper, String name, Classifier target, int targetLower, int targetUpper){
+        return Factory.createRelationship(RelationshipStereotype.TEMPORAL, source, sourceLower, sourceUpper, name, target, targetLower, targetUpper, this)
     }
 
     Generalization createGeneralization(Classifier source, Classifier target){
@@ -243,9 +451,5 @@ trait Container implements NamedElement {
 
     Constraint createConstraint(String context, ConstraintStereotype stereo, String identifier, String expression){
         return Factory.createConstraint(context, stereo, identifier, expression, this)
-    }
-
-    DataType createEnumeration(String name, List<String> textValues){
-        return Factory.createEnumeration(name, textValues)
     }
 }
