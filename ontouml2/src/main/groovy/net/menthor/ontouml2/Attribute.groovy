@@ -67,4 +67,8 @@ class Attribute implements Property {
     boolean isString() {
         return stereotype==PrimitiveStereotype.STRING;
     }
+
+    String toString(){
+        return
+    }
 }

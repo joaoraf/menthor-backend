@@ -73,6 +73,9 @@ class CarAccidentExample {
         //create the derivation
         m.createDerivation(material, accident);
 
+        //print
+        m.getElements().each{ e -> println e }
+
         return m
     }
 }

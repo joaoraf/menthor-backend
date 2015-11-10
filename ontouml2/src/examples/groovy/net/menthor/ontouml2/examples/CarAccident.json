@@ -353,18 +353,34 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": false,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Class",
+                        "stereotype": "RELATOR",
+                        "abstract_": false,
+                        "derived": false,
+                        "extensional": false,
+                        "name": "Traffic Accident"
+                    },
                     "upperBound": -1,
+                    "lowerBound": 1,
+                    "dependency": false,
+                    "derived": false,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": true,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Class",
+                        "stereotype": "KIND",
+                        "abstract_": false,
+                        "derived": false,
+                        "extensional": false,
+                        "name": "Roadway"
+                    },
                     "upperBound": 1,
+                    "lowerBound": 1,
+                    "dependency": true,
+                    "derived": false,
                     "ordered": false
                 }
             ],
@@ -377,18 +393,34 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": false,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Class",
+                        "stereotype": "RELATOR",
+                        "abstract_": false,
+                        "derived": false,
+                        "extensional": false,
+                        "name": "Traffic Accident"
+                    },
                     "upperBound": 1,
+                    "lowerBound": 1,
+                    "dependency": false,
+                    "derived": false,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": true,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Class",
+                        "stereotype": "ROLE",
+                        "abstract_": false,
+                        "derived": false,
+                        "extensional": false,
+                        "name": "Victim"
+                    },
                     "upperBound": -1,
+                    "lowerBound": 1,
+                    "dependency": true,
+                    "derived": false,
                     "ordered": false
                 }
             ],
@@ -401,18 +433,34 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": false,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Class",
+                        "stereotype": "RELATOR",
+                        "abstract_": false,
+                        "derived": false,
+                        "extensional": false,
+                        "name": "Traffic Accident"
+                    },
                     "upperBound": 1,
+                    "lowerBound": 1,
+                    "dependency": false,
+                    "derived": false,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": true,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Class",
+                        "stereotype": "ROLE",
+                        "abstract_": false,
+                        "derived": false,
+                        "extensional": false,
+                        "name": "CrashedVehicle"
+                    },
                     "upperBound": -1,
+                    "lowerBound": 1,
+                    "dependency": true,
+                    "derived": false,
                     "ordered": false
                 }
             ],
@@ -425,18 +473,34 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": false,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Class",
+                        "stereotype": "RELATOR",
+                        "abstract_": false,
+                        "derived": false,
+                        "extensional": false,
+                        "name": "Travel"
+                    },
                     "upperBound": 1,
+                    "lowerBound": 1,
+                    "dependency": false,
+                    "derived": false,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": true,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Class",
+                        "stereotype": "ROLE",
+                        "abstract_": false,
+                        "derived": false,
+                        "extensional": false,
+                        "name": "Traveler"
+                    },
                     "upperBound": -1,
+                    "lowerBound": 1,
+                    "dependency": true,
+                    "derived": false,
                     "ordered": false
                 }
             ],
@@ -449,18 +513,34 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": false,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Class",
+                        "stereotype": "RELATOR",
+                        "abstract_": false,
+                        "derived": false,
+                        "extensional": false,
+                        "name": "Travel"
+                    },
                     "upperBound": 1,
+                    "lowerBound": 1,
+                    "dependency": false,
+                    "derived": false,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": true,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Class",
+                        "stereotype": "KIND",
+                        "abstract_": false,
+                        "derived": false,
+                        "extensional": false,
+                        "name": "Vehicle"
+                    },
                     "upperBound": 1,
+                    "lowerBound": 1,
+                    "dependency": true,
+                    "derived": false,
                     "ordered": false
                 }
             ],
@@ -473,18 +553,34 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": false,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Class",
+                        "stereotype": "ROLE",
+                        "abstract_": false,
+                        "derived": false,
+                        "extensional": false,
+                        "name": "Victim"
+                    },
                     "upperBound": -1,
+                    "lowerBound": 1,
+                    "dependency": false,
+                    "derived": false,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": false,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Class",
+                        "stereotype": "KIND",
+                        "abstract_": false,
+                        "derived": false,
+                        "extensional": false,
+                        "name": "Roadway"
+                    },
                     "upperBound": 1,
+                    "lowerBound": 1,
+                    "dependency": false,
+                    "derived": false,
                     "ordered": false
                 }
             ],
@@ -496,18 +592,65 @@
             "endPoints": [
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": true,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Relationship",
+                        "endPoints": [
+                            {
+                                "@class": "net.menthor.ontouml2.EndPoint",
+                                "classifier": {
+                                    "@class": "net.menthor.ontouml2.Class",
+                                    "stereotype": "ROLE",
+                                    "abstract_": false,
+                                    "derived": false,
+                                    "extensional": false,
+                                    "name": "Victim"
+                                },
+                                "upperBound": -1,
+                                "lowerBound": 1,
+                                "dependency": false,
+                                "derived": false,
+                                "ordered": false
+                            },
+                            {
+                                "@class": "net.menthor.ontouml2.EndPoint",
+                                "classifier": {
+                                    "@class": "net.menthor.ontouml2.Class",
+                                    "stereotype": "KIND",
+                                    "abstract_": false,
+                                    "derived": false,
+                                    "extensional": false,
+                                    "name": "Roadway"
+                                },
+                                "upperBound": 1,
+                                "lowerBound": 1,
+                                "dependency": false,
+                                "derived": false,
+                                "ordered": false
+                            }
+                        ],
+                        "stereotype": "MATERIAL",
+                        "name": "has been victim in"
+                    },
                     "upperBound": -1,
+                    "lowerBound": 1,
+                    "dependency": true,
+                    "derived": false,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml2.EndPoint",
-                    "derived": false,
-                    "dependency": true,
-                    "lowerBound": 1,
+                    "classifier": {
+                        "@class": "net.menthor.ontouml2.Class",
+                        "stereotype": "RELATOR",
+                        "abstract_": false,
+                        "derived": false,
+                        "extensional": false,
+                        "name": "Traffic Accident"
+                    },
                     "upperBound": -1,
+                    "lowerBound": 1,
+                    "dependency": true,
+                    "derived": false,
                     "ordered": false
                 }
             ],

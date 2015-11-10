@@ -52,7 +52,9 @@ class EndPoint implements Property {
         classifier = c
         if(c == null) return
         //Ensuring opposite end
-        c.setIsClassifierIn(this)
+        if(!c.getIsClassifierIn().contains(this)){
+            c.setIsClassifierIn(this)
+        }
     }
 
     void setSubset(EndPoint superEp){

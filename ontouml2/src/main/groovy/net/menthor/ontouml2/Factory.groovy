@@ -60,6 +60,8 @@ class Factory {
         rel.setStereotype(stereotype)
         rel.setName("")
         rel.setDefaultEndPoints(2)
+        rel.getEndPoints().get(0).setClassifier(source)
+        rel.getEndPoints().get(1).setClassifier(target)
         rel.setDefaultReflexivityValue()
         rel.setDefaultSymmetryValue()
         rel.setDefaultTransitivityValue()
