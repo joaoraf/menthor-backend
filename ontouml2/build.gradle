@@ -5,7 +5,6 @@ buildscript {
 	}
 }
 
-id = "ontouml2"
 group = "net.menthor"
 version = "1.0"
 description = "The OntoUML 2.0 metamodel in Groovy"

@@ -6,7 +6,7 @@ import org.codehaus.jackson.annotate.JsonIgnore
 import org.codehaus.jackson.annotate.JsonTypeInfo
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
-trait ContainedElement {
+trait ContainedElement extends Element {
 
     protected Container container
     protected List<Comment> comments = []
