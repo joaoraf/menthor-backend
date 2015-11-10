@@ -3,9 +3,7 @@ The OntoUML 2.0 metamodel with the additions of modeling of events and serializa
 
 **Examples**: Check out the examples at "/src/examples/groovy"
 
-**Wiki**:
-
-[Introduction to the Metamodel](https://github.com/johnguerson/groovy-ontouml2/wiki/Metamodel-Overview)
+**Wiki**: [Introduction to the Metamodel](https://github.com/johnguerson/groovy-ontouml2/wiki/Metamodel-Overview)
 
 **Release Notes**:
 
