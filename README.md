@@ -1,5 +1,5 @@
 # Ontouml2 Infrastructure
-The OntoUML 2.0 metamodel with the additions of modeling of events and serializations in JSON.
+The OntoUML 2.0 metamodel with the additions of modeling of events and serialization in JSON.
 
 **Release Notes**:
 
