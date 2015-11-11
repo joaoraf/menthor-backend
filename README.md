@@ -1,12 +1,8 @@
 # Ontouml 2.0 Infrastructure
 
-**Compiling**: 
+**Compiling**: On Terminal type "gradle wrapper" and then "gradlew build"
 
-- On Terminal type "gradle wrapper" and then "gradlew build"
-
-**Examples**: 
-
-- Some examples can be found at "/ontouml/src/test/groovy"
+**Examples**: Some examples can be found at "/ontouml/src/test/groovy"
 
 **Wiki**: 
 
