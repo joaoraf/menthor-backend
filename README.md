@@ -1,8 +1,6 @@
 # Ontouml 2.0 Infrastructure
 
-**Compiling**: On Terminal type "gradle wrapper" and then "gradlew build"
-
-**Examples**: Some examples can be found at "/ontouml/src/test/groovy"
+To compile the project, on Terminal, type "gradle wrapper" and then "gradlew build". Some examples in using the Infrastructure can be found at "/ontouml/src/test/groovy".
 
 **Wiki**: 
 
