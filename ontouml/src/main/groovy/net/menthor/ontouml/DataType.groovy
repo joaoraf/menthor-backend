@@ -1,13 +1,16 @@
 package net.menthor.ontouml
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import net.menthor.ontouml.stereotypes.DataTypeStereotype
 import net.menthor.ontouml.values.MeasurementValue
 import net.menthor.ontouml.values.ScaleValue
 import net.menthor.ontouml.traits.Type
-import org.codehaus.jackson.annotate.JsonIgnore
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 class DataType implements Type {
 
     protected DataTypeStereotype stereotype

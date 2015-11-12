@@ -1,6 +1,11 @@
 package net.menthor.ontouml.traits
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
+import net.menthor.ontouml.Attribute
 import net.menthor.ontouml.Constraint
+import net.menthor.ontouml.EndPoint
 import net.menthor.ontouml.GeneralizationSet
 import net.menthor.ontouml.Class
 import net.menthor.ontouml.stereotypes.ClassStereotype
@@ -11,9 +16,9 @@ import net.menthor.ontouml.DataType
 import net.menthor.ontouml.Factory
 import net.menthor.ontouml.Generalization
 import net.menthor.ontouml.Relationship
-import org.codehaus.jackson.annotate.JsonTypeInfo
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 trait Container implements NamedElement {
 
     protected List<ContainedElement> elements = []
@@ -202,6 +207,38 @@ trait Container implements NamedElement {
     /** All classifiers of this container (searching in depth) */
     List<Classifier> allClassifiers(){
         return allElements(Classifier.class)
+    }
+
+    //=============================
+    // Attribute
+    //=============================
+
+     List<Attribute> attributes(){
+        List<Attribute> result = []
+        getElements().each{ elem ->
+            if (elem instanceof Type){
+                (elem as Type).getAttributes().each{ ontoAttr ->
+                    result.add(ontoAttr)
+                }
+            }
+        }
+        return result
+    }
+
+    //=============================
+    // EndPoints
+    //=============================
+
+    List<EndPoint> endPoints(){
+        List<EndPoint> endpoints= []
+        getElements().each { elem ->
+            if (elem instanceof Relationship){
+                (elem as Relationship).getEndPoints().each{ endpoint ->
+                    endpoints.add(endpoint)
+                }
+            }
+        }
+        return endpoints
     }
 
     //=============================

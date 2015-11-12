@@ -1,5 +1,17 @@
 package net.menthor.ontouml
 
+import net.menthor.ontouml.Attribute
+import net.menthor.ontouml.Class
+import net.menthor.ontouml.Comment
+import net.menthor.ontouml.Constraint
+import net.menthor.ontouml.DataType
+import net.menthor.ontouml.EndPoint
+import net.menthor.ontouml.Generalization
+import net.menthor.ontouml.GeneralizationSet
+import net.menthor.ontouml.Literal
+import net.menthor.ontouml.Model
+import net.menthor.ontouml.Package
+import net.menthor.ontouml.Relationship
 import net.menthor.ontouml.stereotypes.ClassStereotype
 import net.menthor.ontouml.stereotypes.ConstraintStereotype
 import net.menthor.ontouml.stereotypes.DataTypeStereotype

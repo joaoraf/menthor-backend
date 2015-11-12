@@ -1,9 +1,12 @@
 package net.menthor.ontouml.traits
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import net.menthor.ontouml.Attribute
-import org.codehaus.jackson.annotate.JsonTypeInfo
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 trait Type implements Classifier {
 
     protected List<Attribute> attributes

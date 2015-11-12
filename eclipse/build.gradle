@@ -7,7 +7,7 @@ buildscript {
 
 group = "net.menthor"
 version = "1.0"
-description = "Translation to/from the Reference OntoUML Infrastructure"
+description = "All eclipse libraries used to some of our projects"
 
 apply plugin: 'groovy'
 apply plugin: 'idea'
@@ -17,10 +17,7 @@ repositories {
 }
 
 dependencies {
-	compile project(":ontouml")
 	compile fileTree(dir: 'lib', include: '*.jar')
-    //compile ('org.eclipse.emf:org.eclipse.emf.ecore:2.11.0-v20150123-0347')
-    //compile ("'org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.11.0-v20150123-0347'")
 }
 
 task wrapper(type: Wrapper) {

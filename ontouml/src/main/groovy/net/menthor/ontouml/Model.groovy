@@ -1,8 +1,11 @@
 package net.menthor.ontouml
 
-import org.codehaus.jackson.annotate.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
-class Model extends java.lang.Package {
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+class Model extends Package {
 
 }

@@ -1,16 +1,17 @@
 package net.menthor.ontouml
 
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.databind.ObjectMapper
+
 import groovy.json.JsonOutput
-import org.codehaus.jackson.map.ObjectMapper
-import org.codehaus.jackson.map.annotate.JsonSerialize
 
 class Serializer {
 
     ObjectMapper mapper = new ObjectMapper()
 
     Serializer() {
-        mapper.setSerializationInclusion(JsonSerialize.Inclusion.NON_NULL);
-        mapper.setSerializationInclusion(JsonSerialize.Inclusion.NON_EMPTY);
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
     }
 
     Model fromJSONFile(String path){

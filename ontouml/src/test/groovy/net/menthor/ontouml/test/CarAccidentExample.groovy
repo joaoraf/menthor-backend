@@ -8,12 +8,12 @@ import net.menthor.ontouml.Serializer
 
 class CarAccidentExample {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         Model m = generate()
 
         //save as JSON file
         Serializer s = new Serializer()
-        s.saveFormattedJSON(m,"src/examples/groovy/net/menthor/ontouml/examples/","CarAccident")
+        s.saveFormattedJSON(m,"ontouml/src/test/groovy/net/menthor/ontouml/test/","CarAccident")
 
         println "Car Accident generated"
     }

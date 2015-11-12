@@ -11,8 +11,8 @@ import net.menthor.ontouml.traits.Classifier
 
 class Factory {
 
-    static java.lang.Package createPackage(String name, Container container){
-        java.lang.Package p = new java.lang.Package()
+    static Package createPackage(String name, Container container){
+        Package p = new Package()
         p.setName(name)
         p.setContainer(container)
         return p
@@ -79,8 +79,8 @@ class Factory {
         return rel
     }
 
-    static java.lang.Class createClass(ClassStereotype stereotype, String name, Container container){
-        java.lang.Class c = new java.lang.Class()
+    static Class createClass(ClassStereotype stereotype, String name, Container container){
+        Class c = new Class()
         c.setStereotype(stereotype)
         if(c.isMixinClass()) {
             c.setIsAbstract(true)
@@ -139,8 +139,8 @@ class Factory {
     static Attribute createAttribute (Type owner, PrimitiveStereotype primitive, int lower, int upper, String name, boolean isDerived, boolean isDependency){
         Attribute attribute = createAttribute(owner, primitive, lower, upper)
         attribute.setName("")
-        attribute.setIsDerived(isDerived)
-        attribute.setIsDependency(isDependency)
+        attribute.setDerived(isDerived)
+        attribute.setDependency(isDependency)
         return attribute;
     }
 

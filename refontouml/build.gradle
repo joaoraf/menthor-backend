@@ -1,0 +1,27 @@
+buildscript {
+	repositories {
+		jcenter()
+		mavenCentral()
+	}
+}
+
+group = "net.menthor"
+version = "1.0"
+description = "Compatibility with the Reference OntoUML Infrastructure"
+
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile project(":ontouml")
+    compile project(":eclipse")
+	compile fileTree(dir: 'lib', include: '*.jar')
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.7'
+}

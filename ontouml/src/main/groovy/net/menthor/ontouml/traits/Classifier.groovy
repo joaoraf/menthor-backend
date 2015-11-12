@@ -1,13 +1,16 @@
 package net.menthor.ontouml.traits
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import net.menthor.ontouml.EndPoint
 import net.menthor.ontouml.Generalization
 import net.menthor.ontouml.Relationship
 import net.menthor.ontouml.stereotypes.RelationshipStereotype
-import org.codehaus.jackson.annotate.JsonIgnore
-import org.codehaus.jackson.annotate.JsonTypeInfo
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 trait Classifier implements ContainedElement, NamedElement {
 
     protected List<Generalization> isGeneralIn = []

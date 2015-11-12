@@ -13,7 +13,7 @@ class JSONSerializationTest {
 
     static void main(String[] args){
 
-        def directory = "src/test/groovy/net/menthor/ontouml/test/"
+        def directory = "ontouml/src/test/groovy/net/menthor/ontouml/test/"
         def jsonGen = "CarAccident@Gen"
         def jsonRead = "CarAccident@Read"
 
