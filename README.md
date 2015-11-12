@@ -1,9 +1,10 @@
-# Ontouml2 Infrastructure
-The OntoUML 2.0 metamodel with the additions of modeling of events and serialization in JSON.
+# Ontouml 2.0 Infrastructure
 
-**Examples**: Check out the examples at "/src/examples/groovy"
+To compile the project, on Terminal, type "gradle wrapper" and then "gradlew build". Some examples in using the Infrastructure can be found at "/ontouml/src/test/groovy".
 
-**Wiki**: [Introduction to the Metamodel](https://github.com/johnguerson/groovy-ontouml2/wiki/Metamodel-Overview)
+**Wiki**: 
+
+- [Introduction to the Metamodel](https://github.com/johnguerson/groovy-ontouml2/wiki/Metamodel-Overview)
 
 **Release Notes**:
 
