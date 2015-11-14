@@ -21,11 +21,11 @@ class JSONSerializationTest {
 
         //carAccidentExample example
         Model m = CarAccidentExample.generate()
-        s.saveFormattedJSON(m,directory,jsonGen)
+        s.toFormattedJSONFile(m,directory,jsonGen)
 
         //read the example from file and write it again
         Model m2 = s.fromJSONFile(directory+jsonGen+".json")
-        s.saveFormattedJSON(m2,directory, jsonRead)
+        s.toFormattedJSONFile(m2,directory, jsonRead)
 
         //compare the two files
         String genContent = s.readToString(directory+jsonGen+".json")

@@ -8,33 +8,46 @@ import net.menthor.ontouml.DataType
 import net.menthor.ontouml.EndPoint
 import net.menthor.ontouml.Generalization
 import net.menthor.ontouml.GeneralizationSet
+import net.menthor.ontouml.Literal
 import net.menthor.ontouml.Model
+import net.menthor.ontouml.Factory
+import net.menthor.ontouml.Package
 import net.menthor.ontouml.Class
 import net.menthor.ontouml.Relationship
+import net.menthor.ontouml.stereotypes.ClassStereotype
+import net.menthor.ontouml.stereotypes.DataTypeStereotype
+import net.menthor.ontouml.stereotypes.PrimitiveStereotype
+import net.menthor.ontouml.stereotypes.QualityStereotype
+import net.menthor.ontouml.stereotypes.RelationshipStereotype
 import net.menthor.ontouml.traits.Classifier
-import net.menthor.ontouml.traits.Container
-
+import net.menthor.ontouml.traits.Type
+import net.menthor.ontouml.values.MeasurementValue
+import net.menthor.ontouml.values.ScaleValue
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.xmi.XMLResource
+import org.eclipse.emf.ecore.xmi.impl.XMLParserPoolImpl
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl
 
-class RefOntoMapper extends MapperFrom {
+import java.text.Normalizer;
+
+class RefTargetMapper implements EMFTargetMapper {
 
     static RefOntoUMLFactory factory = RefOntoUMLFactory.eINSTANCE
-    RefOntoUML.Model refmodel
 
     Object toRefOntoUML(Model ontomodel) {
-        return super.from(ontomodel)
+        return from(ontomodel)
     }
 
-    def serialize(String path){
+    def serialize(RefOntoUML.Package model, String path){
         ResourceSet rset = new ResourceSetImpl()
         rset.getResourceFactoryRegistry().getExtensionToFactoryMap().put("refontouml",new RefOntoUMLResourceFactoryImpl())
         rset.getPackageRegistry().put(RefOntoUML.RefOntoUMLPackage.eNS_URI,	RefOntoUML.RefOntoUMLPackage.eINSTANCE)
         URI fileURI = URI.createFileURI(path)
         final Resource resource = rset.createResource(fileURI)
-        resource.getContents().add(refmodel)
+        resource.getContents().add(model)
         try{
             resource.save(Collections.emptyMap())
         }catch(IOException e){
@@ -45,17 +58,16 @@ class RefOntoMapper extends MapperFrom {
 
     @Override
     Object cloneModel(Model ontomodel) {
-        this.refmodel = factory.createModel()
+        def refmodel = factory.createModel()
         refmodel.setName(ontomodel.getName())
         return refmodel
     }
 
     @Override
-    Object clonePackage(Container ontopackage) {
-        String name = ontopackage.getName()
+    Object clonePackage(Package ontopackage, Object tgtParentPackage) {
         RefOntoUML.Package refpack = factory.createPackage()
-        refpack.setName(name)
-        refmodel.getPackagedElement().add(refpack)
+        refpack.setName(ontopackage.getName())
+        (tgtParentPackage as RefOntoUML.Package).getPackagedElement().add(refpack)
         return refpack
     }
 
@@ -83,8 +95,8 @@ class RefOntoMapper extends MapperFrom {
             boolean isAbstract = ontoclass.isAbstract_()
             refClass.setName(name)
             refClass.setIsAbstract(isAbstract)
-            RefOntoUML.Package refpack = packagesMap.get(ontoclass.getContainer())
-            refpack.getPackagedElement().add(refClass)
+            RefOntoUML.Package refpack = this.tgtPackagesMap.get(ontoclass.getContainer())
+            if(refpack!=null) refpack.getPackagedElement().add(refClass)
         }
         return refClass
     }
@@ -119,7 +131,7 @@ class RefOntoMapper extends MapperFrom {
         if(refdatatype!=null) {
             String name = ontodatatype.getName()
             ((RefOntoUML.Type)refdatatype).setName(name)
-            RefOntoUML.Package refpack = packagesMap.get(ontodatatype.getContainer())
+            RefOntoUML.Package refpack = this.tgtPackagesMap.get(ontodatatype.getContainer())
             refpack.getPackagedElement().add(refdatatype);
         }
         return refdatatype
@@ -142,7 +154,7 @@ class RefOntoMapper extends MapperFrom {
         if(refRel!=null){
             String name = ontorel.getName();
             refRel.setName(name);
-            RefOntoUML.Package refpack = packagesMap.get(ontorel.getContainer())
+            RefOntoUML.Package refpack = this.tgtPackagesMap.get(ontorel.getContainer())
             refpack.getPackagedElement().add(refRel);
         }
         return refRel
@@ -169,14 +181,14 @@ class RefOntoMapper extends MapperFrom {
         RefOntoUML.PrimitiveType primitiveType = factory.createPrimitiveType()
         primitiveType.setName(primitiveName)
         refAttr.setType(primitiveType)
-        RefOntoUML.Package refpack = packagesMap.get(attr.getOwner().getContainer())
+        RefOntoUML.Package refpack = this.tgtPackagesMap.get(attr.getOwner().getContainer())
         refpack.getPackagedElement().add(primitiveType)
         if(attr.getOwner() instanceof Class) {
-            RefOntoUML.Type reftype = classMap.get(attr.getOwner())
+            RefOntoUML.Type reftype = this.tgtClassMap.get(attr.getOwner())
             if(reftype!=null)((RefOntoUML.Class)reftype).getOwnedAttribute().add(refAttr)
         }
         if(attr.getOwner() instanceof DataType) {
-            RefOntoUML.Type reftype = dataTypeMap.get(attr.getOwner())
+            RefOntoUML.Type reftype = this.tgtDataTypeMap.get(attr.getOwner())
             if(reftype!=null)((RefOntoUML.DataType)reftype).getOwnedAttribute().add(refAttr)
         }
         return refAttr
@@ -189,7 +201,7 @@ class RefOntoMapper extends MapperFrom {
         boolean isDerived = ep.isDerived()
         boolean isDependency = ep.isDependency()
         String name = ep.getName()
-        RefOntoUML.Association assoc = relationshipsMap.get(ep.getOwner())
+        RefOntoUML.Association assoc = this.tgtRelationshipsMap.get(ep.getOwner())
         RefOntoUML.Property refEndPoint=factory.createProperty()
         RefOntoUML.LiteralInteger lowerBound = factory.createLiteralInteger()
         RefOntoUML.LiteralUnlimitedNatural upperBound = factory.createLiteralUnlimitedNatural()
@@ -204,20 +216,20 @@ class RefOntoMapper extends MapperFrom {
         assoc.getMemberEnd().add(refEndPoint)
         assoc.getOwnedEnd().add(refEndPoint)
         assoc.getNavigableOwnedEnd().add(refEndPoint)
-        if(ep.getClassifier() instanceof Class) refEndPoint.setType(classMap.get(ep.getClassifier()))
-        if(ep.getClassifier() instanceof DataType) refEndPoint.setType(dataTypeMap.get(ep.getClassifier()))
-        if(ep.getClassifier() instanceof Relationship) refEndPoint.setType(relationshipsMap.get(ep.getClassifier()))
+        if(ep.getClassifier() instanceof Class) refEndPoint.setType(this.tgtClassMap.get(ep.getClassifier()))
+        if(ep.getClassifier() instanceof DataType) refEndPoint.setType(this.tgtDataTypeMap.get(ep.getClassifier()))
+        if(ep.getClassifier() instanceof Relationship) refEndPoint.setType(this.tgtRelationshipsMap.get(ep.getClassifier()))
         return refEndPoint
     }
 
     @Override
     def cloneSubsetsAndRedefines(EndPoint ep) {
-        RefOntoUML.Property refProp = endpointsMap.get(ep);
+        RefOntoUML.Property refProp = this.tgtEndpointsMap.get(ep);
         for(EndPoint superProp: ep.getSubsets()){
-            if(refProp!=null) refProp.getSubsettedProperty().add(endpointsMap.get(superProp));
+            if(refProp!=null) refProp.getSubsettedProperty().add(this.tgtEndpointsMap.get(superProp));
         }
         for(EndPoint superProp: ep.getRedefines()){
-            if(refProp!=null) refProp.getRedefinedProperty().add(endpointsMap.get(superProp));
+            if(refProp!=null) refProp.getRedefinedProperty().add(this.tgtEndpointsMap.get(superProp));
         }
     }
 
@@ -226,13 +238,13 @@ class RefOntoMapper extends MapperFrom {
         Classifier general = g.getGeneral()
         Classifier specific = g.getSpecific()
         RefOntoUML.Classifier refGeneral=null
-        if(general instanceof Class) refGeneral= classMap.get(general)
-        if(general instanceof DataType) refGeneral = dataTypeMap.get(general)
-        if(general instanceof Relationship) refGeneral = relationshipsMap.get(general)
+        if(general instanceof Class) refGeneral= this.tgtClassMap.get(general)
+        if(general instanceof DataType) refGeneral = this.tgtDataTypeMap.get(general)
+        if(general instanceof Relationship) refGeneral = this.tgtRelationshipsMap.get(general)
         RefOntoUML.Classifier refSpecific = null
-        if(specific instanceof Class) refSpecific= classMap.get(specific)
-        if(specific instanceof DataType) refSpecific = dataTypeMap.get(specific)
-        if(specific instanceof Relationship) refSpecific = relationshipsMap.get(specific)
+        if(specific instanceof Class) refSpecific= this.tgtClassMap.get(specific)
+        if(specific instanceof DataType) refSpecific = this.tgtDataTypeMap.get(specific)
+        if(specific instanceof Relationship) refSpecific = this.tgtRelationshipsMap.get(specific)
         RefOntoUML.Generalization refGen = factory.createGeneralization()
         if(refGeneral!=null) {
             refGen.setGeneral(refGeneral)
@@ -252,14 +264,14 @@ class RefOntoMapper extends MapperFrom {
         List<Generalization> gens = gs.getGeneralizations()
         List<RefOntoUML.Generalization> refGens = []
         gens.each{ g ->
-            if(gensMap.get(g)!=null) refGens.add(gensMap.get(g))
+            if(this.tgtGensMap.get(g)!=null) refGens.add(this.tgtGensMap.get(g))
         }
         RefOntoUML.GeneralizationSet refGenSet = factory.createGeneralizationSet()
         refGenSet.setIsCovering(isCovering)
         refGenSet.setIsDisjoint(isDisjoint)
         refGenSet.setName("")
         refGenSet.getGeneralization().addAll(refGens)
-        RefOntoUML.Package refpack = packagesMap.get(gs.getContainer())
+        RefOntoUML.Package refpack = this.tgtPackagesMap.get(gs.getContainer())
         refpack.getPackagedElement().add(refGenSet)
         return refGenSet
     }

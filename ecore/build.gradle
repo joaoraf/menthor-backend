@@ -7,7 +7,7 @@ buildscript {
 
 group = "net.menthor"
 version = "1.0"
-description = "Compatibility with the Reference OntoUML Infrastructure"
+description = "Compatibility with the Ecore Metamodeling Language"
 
 apply plugin: 'groovy'
 apply plugin: 'idea'
@@ -17,9 +17,6 @@ repositories {
 }
 
 dependencies {
-	compile project(":ontouml")
-    compile project(":ecore")
-	compile project(":ocl")
 	compile fileTree(dir: 'lib', include: '*.jar')
 }
 

@@ -55,18 +55,23 @@ class Factory {
         return gs;
     }
 
-    static Relationship createRelationship(RelationshipStereotype stereotype, Classifier source, Classifier target, Container container){
+    static Relationship createRelationship(RelationshipStereotype stereotype, String name, Container container) {
         Relationship rel = new Relationship()
         rel.setStereotype(stereotype)
-        rel.setName("")
+        rel.setName(name)
+        rel.setContainer(container)
+        return rel
+    }
+
+    static Relationship createRelationship(RelationshipStereotype stereotype, Classifier source, Classifier target, Container container){
+        Relationship rel = createRelationship(stereotype,"",container)
         rel.setDefaultEndPoints(2)
-        rel.getEndPoints().get(0).setClassifier(source)
-        rel.getEndPoints().get(1).setClassifier(target)
         rel.setDefaultReflexivityValue()
         rel.setDefaultSymmetryValue()
         rel.setDefaultTransitivityValue()
         rel.setDefaultCyclicityValue()
-        rel.setContainer(container)
+        rel.getEndPoints().get(0).setClassifier(source)
+        rel.getEndPoints().get(1).setClassifier(target)
         return rel;
     }
 
@@ -156,6 +161,13 @@ class Factory {
         ep.setName(name)
         rel.setEndPoint(ep)
         return ep;
+    }
+
+    static EndPoint createEndPoint (Relationship rel, Classifier classifier, int lower, int upper, String name, boolean isDerived, boolean isDependency){
+        EndPoint endpoint = createEndPoint(rel, classifier, lower, upper, name)
+        endpoint.setDerived(isDerived)
+        endpoint.setDependency(isDependency)
+        return endpoint;
     }
 
     static Constraint createConstraint(String context, ConstraintStereotype stereotype, String identifier, String expression, Container container){

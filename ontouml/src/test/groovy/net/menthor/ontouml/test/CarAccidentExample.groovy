@@ -13,7 +13,7 @@ class CarAccidentExample {
 
         //save as JSON file
         Serializer s = new Serializer()
-        s.saveFormattedJSON(m,"ontouml/src/test/groovy/net/menthor/ontouml/test/","CarAccident")
+        s.toFormattedJSONFile(m,"ontouml/src/test/groovy/net/menthor/ontouml/test/","CarAccident")
 
         println "Car Accident generated"
     }

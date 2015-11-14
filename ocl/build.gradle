@@ -7,7 +7,7 @@ buildscript {
 
 group = "net.menthor"
 version = "1.0"
-description = "All eclipse libraries used to some of our projects"
+description = "Support for Constraints in the OCL Constraint Language"
 
 apply plugin: 'groovy'
 apply plugin: 'idea'
@@ -17,6 +17,7 @@ repositories {
 }
 
 dependencies {
+	compile project(":ecore")
 	compile fileTree(dir: 'lib', include: '*.jar')
 }
 

@@ -16,30 +16,30 @@ class Serializer {
 
     Model fromJSONFile(String path){
         def jsonStr = readToString(path)
-        return fromJSON(jsonStr)
+        return fromJSONString(jsonStr)
     }
 
-    Model fromJSON(String json) {
+    Model fromJSONString(String json) {
         Model actual = (Model) mapper.readValue(json, Model.class);
         return actual
     }
 
-    String toJSON(GroovyObject obj) {
+    String toJSONString(GroovyObject obj) {
         return mapper.writeValueAsString(obj);
     }
 
-    String toFormattedJSON(GroovyObject obj){
-        def jsonStr = toJSON(obj)
+    String toFormattedJSONString(GroovyObject obj){
+        def jsonStr = toJSONString(obj)
         return JsonOutput.prettyPrint(jsonStr)
     }
 
-    File saveJSON (GroovyObject obj, String directory, String fileName) {
-        def content = toJSON(obj)
+    File toJSONFile(GroovyObject obj, String directory, String fileName) {
+        def content = toJSONString(obj)
         writeToFile(content, directory, fileName, ".json")
     }
 
-    File saveFormattedJSON(GroovyObject obj, String directory, String fileName) {
-        def content = toFormattedJSON(obj)
+    File toFormattedJSONFile(GroovyObject obj, String directory, String fileName) {
+        def content = toFormattedJSONString(obj)
         writeToFile(content, directory, fileName, ".json")
     }
 

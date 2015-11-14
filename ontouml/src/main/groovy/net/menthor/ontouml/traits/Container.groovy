@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import net.menthor.ontouml.Attribute
 import net.menthor.ontouml.Constraint
+import net.menthor.ontouml.Package
 import net.menthor.ontouml.EndPoint
 import net.menthor.ontouml.GeneralizationSet
 import net.menthor.ontouml.Class
