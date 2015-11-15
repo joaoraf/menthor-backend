@@ -1,7 +1,7 @@
 # Ontouml 2.0 Infrastructure
 
 - To compile and build the project, on Terminal, type "gradle wrapper" and then "gradlew build". 
-- To generate a Fat Jar for a given sub-project type just "gradle fatJar"
+- To generate a Fat Jar for a given sub-project just type "gradle fatJar"
 
 **Examples**: 
 
