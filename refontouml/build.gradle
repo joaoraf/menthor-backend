@@ -12,6 +12,18 @@ description = "Compatibility with the Reference OntoUML Infrastructure"
 apply plugin: 'groovy'
 apply plugin: 'idea'
 
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	manifest {
+		attributes 'Implementation-Title': 'Compatilibity with the RefOntoUML API',
+				'Implementation-Version': version,
+				'Main-Class': 'net.menthor.ontouml.map.RefMapper'
+	}
+	baseName = project.name + '-all'
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
+}
+
 repositories {
 	mavenCentral()
 }

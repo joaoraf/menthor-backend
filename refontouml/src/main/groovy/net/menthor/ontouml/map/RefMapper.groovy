@@ -6,8 +6,16 @@ import net.menthor.ontouml.Model
 
 class RefMapper {
 
-    RefSourceMapper sourceMapper = new RefSourceMapper()
-    RefTargetMapper targetMapper = new RefTargetMapper()
+    static void main(String[] args){
+        println "\n==============================================="
+        println "Compatibility with the RefOntoUML API"
+        println "Copyright: MIT License"
+        println "Powered by Menthor (www.menthor.net)"
+        println "================================================"
+    }
+
+    private RefSourceMapper sourceMapper = new RefSourceMapper()
+    private RefTargetMapper targetMapper = new RefTargetMapper()
 
     Model fromRefOntoUML(RefOntoUML.Package refmodel){
         sourceMapper.fromRefOntoUML(refmodel)

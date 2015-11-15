@@ -3,7 +3,6 @@ package net.menthor.ontouml.map.test
 import net.menthor.ontouml.Model
 import net.menthor.ontouml.Serializer
 import net.menthor.ontouml.map.RefMapper
-import net.menthor.ontouml.map.RefTargetMapper
 
 class RefMapperTest {
 

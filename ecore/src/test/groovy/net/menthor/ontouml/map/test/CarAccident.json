@@ -1,0 +1,397 @@
+{
+    "@class": "net.menthor.ontouml.Model",
+    "@id": 1,
+    "name": "Car Accident",
+    "elements": [
+        {
+            "@class": "net.menthor.ontouml.Class",
+            "@id": 2,
+            "stereotype": "KIND",
+            "abstract_": false,
+            "derived": false,
+            "extensional": false,
+            "name": "Person"
+        },
+        {
+            "@class": "net.menthor.ontouml.Package",
+            "@id": 50,
+            "name": "Package1"
+        },
+        {
+            "@class": "net.menthor.ontouml.Class",
+            "@id": 3,
+            "stereotype": "KIND",
+            "abstract_": false,
+            "derived": false,
+            "extensional": false,
+            "name": "Vehicle"
+        },
+        {
+            "@class": "net.menthor.ontouml.Class",
+            "@id": 4,
+            "stereotype": "KIND",
+            "abstract_": false,
+            "derived": false,
+            "extensional": false,
+            "name": "Roadway"
+        },
+        {
+            "@class": "net.menthor.ontouml.Class",
+            "@id": 5,
+            "stereotype": "SUBKIND",
+            "abstract_": false,
+            "derived": false,
+            "extensional": false,
+            "name": "Man"
+        },
+        {
+            "@class": "net.menthor.ontouml.Class",
+            "@id": 6,
+            "stereotype": "SUBKIND",
+            "abstract_": false,
+            "derived": false,
+            "extensional": false,
+            "name": "Woman"
+        },
+        {
+            "@class": "net.menthor.ontouml.GeneralizationSet",
+            "@id": 7,
+            "covering": true,
+            "disjoint": true,
+            "generalizations": [
+                {
+                    "@class": "net.menthor.ontouml.Generalization",
+                    "@id": 8,
+                    "general": 2,
+                    "specific": 5
+                },
+                {
+                    "@class": "net.menthor.ontouml.Generalization",
+                    "@id": 9,
+                    "general": 2,
+                    "specific": 6
+                }
+            ]
+        },
+        8,
+        9,
+        {
+            "@class": "net.menthor.ontouml.Class",
+            "@id": 10,
+            "stereotype": "PHASE",
+            "abstract_": false,
+            "derived": false,
+            "extensional": false,
+            "name": "Living"
+        },
+        {
+            "@class": "net.menthor.ontouml.Class",
+            "@id": 11,
+            "stereotype": "PHASE",
+            "abstract_": false,
+            "derived": false,
+            "extensional": false,
+            "name": "Deceased"
+        },
+        {
+            "@class": "net.menthor.ontouml.GeneralizationSet",
+            "@id": 12,
+            "covering": true,
+            "disjoint": true,
+            "generalizations": [
+                {
+                    "@class": "net.menthor.ontouml.Generalization",
+                    "@id": 13,
+                    "general": 2,
+                    "specific": 10
+                },
+                {
+                    "@class": "net.menthor.ontouml.Generalization",
+                    "@id": 14,
+                    "general": 2,
+                    "specific": 11
+                }
+            ]
+        },
+        13,
+        14,
+        {
+            "@class": "net.menthor.ontouml.Class",
+            "@id": 15,
+            "stereotype": "ROLE",
+            "abstract_": false,
+            "derived": false,
+            "extensional": false,
+            "name": "Traveler"
+        },
+        {
+            "@class": "net.menthor.ontouml.Class",
+            "@id": 16,
+            "stereotype": "ROLE",
+            "abstract_": false,
+            "derived": false,
+            "extensional": false,
+            "name": "Victim"
+        },
+        {
+            "@class": "net.menthor.ontouml.Class",
+            "@id": 17,
+            "stereotype": "ROLE",
+            "abstract_": false,
+            "derived": false,
+            "extensional": false,
+            "name": "CrashedVehicle"
+        },
+        {
+            "@class": "net.menthor.ontouml.Class",
+            "@id": 18,
+            "stereotype": "RELATOR",
+            "abstract_": false,
+            "derived": false,
+            "extensional": false,
+            "name": "Traffic Accident"
+        },
+        {
+            "@class": "net.menthor.ontouml.Class",
+            "@id": 19,
+            "stereotype": "RELATOR",
+            "abstract_": false,
+            "derived": false,
+            "extensional": false,
+            "name": "Rear End Collision"
+        },
+        {
+            "@class": "net.menthor.ontouml.Class",
+            "@id": 20,
+            "stereotype": "RELATOR",
+            "abstract_": false,
+            "derived": false,
+            "extensional": false,
+            "name": "Travel"
+        },
+        {
+            "@class": "net.menthor.ontouml.Generalization",
+            "@id": 21,
+            "general": 2,
+            "specific": 15
+        },
+        {
+            "@class": "net.menthor.ontouml.Generalization",
+            "@id": 22,
+            "general": 2,
+            "specific": 16
+        },
+        {
+            "@class": "net.menthor.ontouml.Generalization",
+            "@id": 23,
+            "general": 3,
+            "specific": 17
+        },
+        {
+            "@class": "net.menthor.ontouml.Generalization",
+            "@id": 24,
+            "general": 18,
+            "specific": 19
+        },
+        {
+            "@class": "net.menthor.ontouml.Relationship",
+            "@id": 25,
+            "endPoints": [
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 26,
+                    "classifier": 18,
+                    "derived": false,
+                    "upperBound": -1,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "ordered": false
+                },
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 27,
+                    "classifier": 4,
+                    "derived": false,
+                    "upperBound": 1,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "ordered": false
+                }
+            ],
+            "stereotype": "MEDIATION",
+            "reflexivityValue": "IRREFLEXIVE",
+            "name": "occurs"
+        },
+        {
+            "@class": "net.menthor.ontouml.Relationship",
+            "@id": 28,
+            "endPoints": [
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 29,
+                    "classifier": 18,
+                    "derived": false,
+                    "upperBound": 1,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "ordered": false
+                },
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 30,
+                    "classifier": 16,
+                    "derived": false,
+                    "upperBound": -1,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "ordered": false
+                }
+            ],
+            "stereotype": "MEDIATION",
+            "reflexivityValue": "IRREFLEXIVE",
+            "name": "has"
+        },
+        {
+            "@class": "net.menthor.ontouml.Relationship",
+            "@id": 31,
+            "endPoints": [
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 32,
+                    "classifier": 18,
+                    "derived": false,
+                    "upperBound": 1,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "ordered": false
+                },
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 33,
+                    "classifier": 17,
+                    "derived": false,
+                    "upperBound": -1,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "ordered": false
+                }
+            ],
+            "stereotype": "MEDIATION",
+            "reflexivityValue": "IRREFLEXIVE",
+            "name": "involves"
+        },
+        {
+            "@class": "net.menthor.ontouml.Relationship",
+            "@id": 34,
+            "endPoints": [
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 35,
+                    "classifier": 20,
+                    "derived": false,
+                    "upperBound": 1,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "ordered": false
+                },
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 36,
+                    "classifier": 15,
+                    "derived": false,
+                    "upperBound": -1,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "ordered": false
+                }
+            ],
+            "stereotype": "MEDIATION",
+            "reflexivityValue": "IRREFLEXIVE",
+            "name": "has"
+        },
+        {
+            "@class": "net.menthor.ontouml.Relationship",
+            "@id": 37,
+            "endPoints": [
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 38,
+                    "classifier": 20,
+                    "derived": false,
+                    "upperBound": 1,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "ordered": false
+                },
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 39,
+                    "classifier": 3,
+                    "derived": false,
+                    "upperBound": 1,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "ordered": false
+                }
+            ],
+            "stereotype": "MEDIATION",
+            "reflexivityValue": "IRREFLEXIVE",
+            "name": "made by"
+        },
+        {
+            "@class": "net.menthor.ontouml.Relationship",
+            "@id": 40,
+            "endPoints": [
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 41,
+                    "classifier": 16,
+                    "derived": false,
+                    "upperBound": -1,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "ordered": false
+                },
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 42,
+                    "classifier": 4,
+                    "derived": false,
+                    "upperBound": 1,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "ordered": false
+                }
+            ],
+            "stereotype": "MATERIAL",
+            "name": "has been victim in"
+        },
+        {
+            "@class": "net.menthor.ontouml.Relationship",
+            "@id": 43,
+            "endPoints": [
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 44,
+                    "classifier": 40,
+                    "derived": false,
+                    "upperBound": -1,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "ordered": false
+                },
+                {
+                    "@class": "net.menthor.ontouml.EndPoint",
+                    "@id": 45,
+                    "classifier": 18,
+                    "derived": false,
+                    "upperBound": -1,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "ordered": false
+                }
+            ],
+            "stereotype": "DERIVATION"
+        }
+    ]
+}

@@ -12,11 +12,24 @@ description = "Compatibility with the Ecore Metamodeling Language"
 apply plugin: 'groovy'
 apply plugin: 'idea'
 
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	manifest {
+		attributes 'Implementation-Title': 'Compatilibity with the Ecore Metamodeling Language',
+				'Implementation-Version': version,
+				'Main-Class': 'net.menthor.ontouml.map.EcoreMapper'
+	}
+	baseName = project.name + '-all'
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
+}
+
 repositories {
 	mavenCentral()
 }
 
 dependencies {
+	compile project(":ontouml")
 	compile fileTree(dir: 'lib', include: '*.jar')
 }
 

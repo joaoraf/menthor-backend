@@ -8,4 +8,11 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 class Model extends Package {
 
+    static void main(String[] args){
+        println "\n================================="
+        println "OntoUML 2.0 Metamodel API"
+        println "Copyright: MIT License"
+        println "Powered by Menthor (www.menthor.net)"
+        println "================================="
+    }
 }

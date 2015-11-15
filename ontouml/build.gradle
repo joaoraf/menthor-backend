@@ -7,10 +7,22 @@ buildscript {
 
 group = "net.menthor"
 version = "1.0"
-description = "The OntoUML 2.0 metamodel in Groovy"
+description = "OntoUML 2.0 Metamodel API"
 
 apply plugin: 'groovy'
 apply plugin: 'idea'
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'OntoUML 2.0 Metamodel API',
+                'Implementation-Version': version,
+                'Main-Class': 'net.menthor.ontouml.Model'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
 
 repositories {
 	mavenCentral()
