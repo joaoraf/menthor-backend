@@ -116,7 +116,7 @@ trait Classifier implements ContainedElement, NamedElement {
 
     /** All (direct and indirect) parents */
     void allParents(Classifier c, List result){
-        c.isSpecificIn().each{ g ->
+        c.getIsSpecificIn().each{ g ->
             def Classifier parent = g.getGeneral();
             result.add(parent);
             allParents(parent,result);
@@ -132,7 +132,7 @@ trait Classifier implements ContainedElement, NamedElement {
 
     /* All (direct and indirect) children */
     void allChildren(Classifier c, List result){
-        c.isGeneralIn().each{ g ->
+        c.getIsGeneralIn().each{ g ->
             def child = g.getSpecific();
             result.add(child);
             allChildren(child, result);
@@ -251,5 +251,26 @@ trait Classifier implements ContainedElement, NamedElement {
             result.addAll(p.oppositeEndPoints(stereo));
         }
         return result;
+    }
+
+    /** Returns all direct relationships this classifier is connected to */
+    List<Relationship> relationships(){
+        def result = []
+        model().allRelationships().each{ rel ->
+            if(rel.isConnecting(this)){
+                result.add(rel)
+            }
+        }
+        return result
+    }
+
+    /** Returns all direct and indirect relationships this classifier is connected to */
+    List<Relationship> allRelationships(){
+        def result = []
+        result.addAll(this.relationships())
+        this.allParents().each{ p ->
+            result.addAll(p.relationships())
+        }
+        return result
     }
 }

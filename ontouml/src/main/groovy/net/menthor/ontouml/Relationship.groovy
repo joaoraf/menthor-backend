@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import net.menthor.ontouml.stereotypes.RelationshipStereotype
 import net.menthor.ontouml.values.ReflexivityValue
 import net.menthor.ontouml.values.SymmetryValue
+import net.menthor.ontouml.Class
 import net.menthor.ontouml.stereotypes.ParticipationStereotype
 import net.menthor.ontouml.stereotypes.TemporalStereotype
 import net.menthor.ontouml.traits.Classifier
@@ -301,8 +302,8 @@ class Relationship implements Classifier {
     boolean isSourceAClass(){ return (sourceClass()==null) ? false : true }
 
     /** Returns the source (first end-class) of this relationship */
-    java.lang.Class sourceClass() {
-        if(source()!=null) return source() as java.lang.Class
+    Class sourceClass() {
+        if(source()!=null) return source() as Class
         return null;
     }
 
@@ -310,8 +311,8 @@ class Relationship implements Classifier {
     boolean isTargetAClass(){ return (targetClass()==null) ? false : true }
 
     /** Returns the target (second end-class) of this relationship */
-    java.lang.Class targetClass(){
-        if(target()!=null) return target() as java.lang.Class
+    Class targetClass(){
+        if(target()!=null) return target() as Class
         return null;
     }
 
@@ -352,16 +353,16 @@ class Relationship implements Classifier {
     }
 
     @JsonIgnore
-    boolean isTargetATruthMaker(){ return isTargetAClass() && ((java.lang.Class)target()).isTruthMaker() }
+    boolean isTargetATruthMaker(){ return isTargetAClass() && ((Class)target()).isTruthMaker() }
 
     @JsonIgnore
-    boolean isSourceATruthMaker(){ return isSourceAClass() && ((java.lang.Class)source()).isTruthMaker() }
+    boolean isSourceATruthMaker(){ return isSourceAClass() && ((Class)source()).isTruthMaker() }
 
     @JsonIgnore
-    boolean isTargetAnEvent(){ return isTargetAClass() && ((java.lang.Class)target()).isEvent() }
+    boolean isTargetAnEvent(){ return isTargetAClass() && ((Class)target()).isEvent() }
 
     @JsonIgnore
-    boolean isSourceAnEvent(){ return isSourceAClass() && ((java.lang.Class)source()).isEvent() }
+    boolean isSourceAnEvent(){ return isSourceAClass() && ((Class)source()).isEvent() }
 
     @JsonIgnore
     boolean isTargetAStructure(){ return isTargetADataType() && ((DataType)target()).isStructure() }
@@ -370,19 +371,19 @@ class Relationship implements Classifier {
     boolean isSourceAStructure(){ return isSourceADataType() && ((DataType)source()).isStructure() }
 
     @JsonIgnore
-    boolean isSourceAQuality(){ return isSourceAClass() && ((java.lang.Class)source()).isQuality() }
+    boolean isSourceAQuality(){ return isSourceAClass() && ((Class)source()).isQuality() }
 
     @JsonIgnore
-    boolean isTargetAQuality(){ return isTargetAClass() && ((java.lang.Class)target()).isQuality() }
+    boolean isTargetAQuality(){ return isTargetAClass() && ((Class)target()).isQuality() }
 
     @JsonIgnore
     boolean isTargetANonQualitativeIntrinsicMoment(){
-        return isTargetAClass() && ((java.lang.Class)target()).isNonQualitativeIntrinsicMoment()
+        return isTargetAClass() && ((Class)target()).isNonQualitativeIntrinsicMoment()
     }
 
     @JsonIgnore
     boolean isSourceANonQualitativeIntrinsicMoment(){
-        return isSourceAClass() && ((java.lang.Class)source()).isNonQualitativeIntrinsicMoment()
+        return isSourceAClass() && ((Class)source()).isNonQualitativeIntrinsicMoment()
     }
 
     @JsonIgnore
@@ -408,12 +409,12 @@ class Relationship implements Classifier {
         else return null;
     }
     /** Returns the source (first end-class) of this relationship */
-    java.lang.Class wholeClass(){
+    Class wholeClass(){
         if(isMeronymic()) { return sourceClass(); }
         else return null;
     }
     /** Returns the target (second end-class) of this relationship */
-    java.lang.Class partClass(){
+    Class partClass(){
         if(isMeronymic()) { return targetClass(); }
         else return null;
     }
@@ -434,13 +435,9 @@ class Relationship implements Classifier {
     /** Checks if there is at least one end-point in this relationship of classifier c. */
     @JsonIgnore
     boolean isConnecting(Classifier c){
-        endPoints.each{ ep ->
-            def t = ep.getClassifier();
-            if(t!=null){
-                if(t.equals(c)) return true;
-            }
+        return endPoints.any{ ep ->
+            ep.getClassifier().equals(c)
         }
-        return false;
     }
 
     /** A part is essential if the target end of a meronymic relationship is dependent on the rigid source type */

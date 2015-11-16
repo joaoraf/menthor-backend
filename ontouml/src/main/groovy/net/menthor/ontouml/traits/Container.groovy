@@ -79,8 +79,8 @@ trait Container implements NamedElement {
         c.getElements().each{ e->
             if(type.isInstance(e)) {
                 result.add(e)
-                allElements(e, type, result)
             }
+            if(e instanceof Container) allElements(e, type, result)
         }
     }
 
