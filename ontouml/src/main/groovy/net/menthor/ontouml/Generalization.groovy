@@ -44,8 +44,8 @@ class Generalization implements ContainedElement {
         this.general = general
         if(general==null) return
         //Ensuring the opposite end
-        if(!general.isGeneralIn.contains(this)){
-            general.isGeneralIn.add(this)
+        if(!general.getIsGeneralIn().contains(this)){
+            general.getIsGeneralIn().add(this)
         }
     }
 
@@ -53,8 +53,8 @@ class Generalization implements ContainedElement {
         this.specific = specific
         if(specific == null) return
         //Ensuring the opposite end
-        if(!specific.isSpecificIn.contains(this)){
-            specific.isSpecificIn.add(this)
+        if(!specific.getIsSpecificIn().contains(this)){
+            specific.getIsSpecificIn().add(this)
         }
     }
 }

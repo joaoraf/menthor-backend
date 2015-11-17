@@ -487,7 +487,7 @@ trait Container implements NamedElement {
         return Factory.createPartition(specifics, general, this)
     }
 
-    Constraint createConstraint(String context, ConstraintStereotype stereo, String identifier, String expression){
+    Constraint createConstraint(NamedElement context, ConstraintStereotype stereo, String identifier, String expression){
         return Factory.createConstraint(context, stereo, identifier, expression, this)
     }
 }

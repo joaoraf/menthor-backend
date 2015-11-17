@@ -6,13 +6,14 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import net.menthor.ontouml.stereotypes.ConstraintStereotype
 import net.menthor.ontouml.traits.ContainedElement
+import net.menthor.ontouml.traits.NamedElement
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 class Constraint implements ContainedElement {
 
     protected ConstraintStereotype stereotype
-    protected String context
+    protected NamedElement context
     protected String expression
     protected String identifier
 
@@ -22,7 +23,7 @@ class Constraint implements ContainedElement {
 
     ConstraintStereotype getStereotype() { return stereotype }
 
-    String getContext() { return context }
+    NamedElement getContext() { return context }
 
     String getExpression() { return expression }
 
@@ -34,7 +35,14 @@ class Constraint implements ContainedElement {
 
     void setStereotype(ConstraintStereotype stereotype) { this.stereotype = stereotype }
 
-    void setContext(String context) { this.context = context }
+    void setContext(NamedElement context) {
+        this.context = context
+        if(context==null) return
+        //Ensuring the opposite end
+        if(!context.getIsContextIn().contains(this)){
+            context.getIsContextIn().add(this)
+        }
+    }
 
     void setExpression(String expression) { this.expression = expression }
 

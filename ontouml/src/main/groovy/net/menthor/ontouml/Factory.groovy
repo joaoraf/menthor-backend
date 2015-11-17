@@ -6,6 +6,7 @@ import net.menthor.ontouml.stereotypes.DataTypeStereotype
 import net.menthor.ontouml.stereotypes.PrimitiveStereotype
 import net.menthor.ontouml.stereotypes.RelationshipStereotype
 import net.menthor.ontouml.traits.Container
+import net.menthor.ontouml.traits.NamedElement
 import net.menthor.ontouml.traits.Type
 import net.menthor.ontouml.traits.Classifier
 
@@ -170,7 +171,7 @@ class Factory {
         return endpoint;
     }
 
-    static Constraint createConstraint(String context, ConstraintStereotype stereotype, String identifier, String expression, Container container){
+    static Constraint createConstraint(NamedElement context, ConstraintStereotype stereotype, String identifier, String expression, Container container){
         Constraint c = new Constraint()
         c.setStereotype(stereotype)
         c.setContext(context)
