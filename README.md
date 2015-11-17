@@ -3,18 +3,21 @@
 
 **Examples**: 
 
-- _CarAccidentExample.groovy_ 
-  - Using the metamodel programatically (ontouml/src/test/groovy)
-- _JSONSerializationTest.groovy_
-  - Serialize/deserialize to JSON (ontouml/src/test/groovy)
-- _RefMapperTest.groovy_
-  - Compatibility with RefOntoUML (refontouml/src/test/groovy)
-- _EcoreMapperTest.groovy_
-  - Compatibility to Ecore (ecore/src/test/groovy)
+- Using the metamodel programatically 
+  - _CarAccidentExample.groovy_ (ontouml/src/test/groovy)
+- Serialize/deserialize to JSON 
+  - _JSONSerializationTest.groovy_ (ontouml/src/test/groovy)
+- Compatibility with RefOntoUML 
+  - _RefMapperTest.groovy_ (refontouml/src/test/groovy)
+- Compatibility to Ecore 
+  - _EcoreMapperTest.groovy_ (ecore/src/test/groovy)
+- Syntactical Checker
+  - _CheckerTest.groovy_ (ontouml/src/test/groovy) 
 
 **Wiki**: 
 
-- [Metamodel Overview](https://github.com/johnguerson/groovy-ontouml2/wiki/Metamodel-Overview)
+- [Metamodel] (https://github.com/johnguerson/groovy-ontouml2/wiki/Metamodel)
+- [Syntactical Rules] (https://github.com/johnguerson/groovy-ontouml2/wiki/Rules) 
 
 **Release Notes**:
 
