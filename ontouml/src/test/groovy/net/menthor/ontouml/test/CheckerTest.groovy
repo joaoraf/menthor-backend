@@ -10,6 +10,8 @@ class CheckerTest {
         m.createMode("Mode1")
 
         def checker = new Checker()
-        checker.execute(m)
+        checker.execute(m).each{ error ->
+            println error
+        }
     }
 }

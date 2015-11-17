@@ -12,7 +12,7 @@ import net.menthor.ontouml.Relationship
 import net.menthor.ontouml.traits.Container
 
 /* A Generic trait to map OntoUML to a target language which is based on EMF packaging style.
- * This trait can be used to transform OntoUML into UML, Ecore or RefOntoUML. */
+ * This trait can be used to transform OntoUML into UML, Ecore,  RefOntoUML, etc */
 
 trait EMFTargetMapper {
 

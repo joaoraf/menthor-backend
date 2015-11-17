@@ -199,7 +199,7 @@ trait Classifier implements ContainedElement, NamedElement {
         model().allRelationships().each{ rel ->
             rel = rel as Relationship
             if(rel.isConnecting(this)){
-                rel.endPoints().each{ ep ->
+                rel.getEndPoints().each{ ep ->
                     def t = ep.getClassifier();
                     if(t!=null){
                         if(!t.equals(this)){
@@ -218,7 +218,7 @@ trait Classifier implements ContainedElement, NamedElement {
         def result = []
         model().allRelationships().each{ rel ->
             if(rel.isConnecting(this) && rel.stereotype.equals(stereo)){
-               rel.endPoints().each{ ep ->
+               rel.getEndPoints().each{ ep ->
                     def t = ep.getClassifier();
                     if(t!=null){
                         if(!t.equals(this)){
