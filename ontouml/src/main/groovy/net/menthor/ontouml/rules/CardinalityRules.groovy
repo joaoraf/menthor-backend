@@ -36,6 +36,10 @@ class CardinalityRules extends GenericRules {
         return list - null
     }
 
+    //=========================================
+    //Rules
+    //=========================================
+
     static SyntacticalError mediationTargetCardinality(Relationship self){
         def errormsg = 'The mediated end (target) of a Mediation must have minimum cardinality of 1.'
         def itsTrue = targetMultiplicity(self, "isMediation", 1, null)

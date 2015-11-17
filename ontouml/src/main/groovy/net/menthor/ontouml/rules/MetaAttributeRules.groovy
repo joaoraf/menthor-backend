@@ -45,6 +45,10 @@ class MetaAttributeRules extends GenericRules {
         return list - null
     }
 
+    //=========================================
+    //Rules
+    //=========================================
+
     static SyntacticalError mixinsAreAbstract(Class self){
         def errormsg = 'A Mixin class (Category, PhaseMixin, RoleMixin, Mixin) must always be abstract'
         def itsTrue = true

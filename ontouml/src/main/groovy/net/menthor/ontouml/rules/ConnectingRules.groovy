@@ -66,9 +66,9 @@ class ConnectingRules extends GenericRules {
         return list - null
     }
 
-    //==========================================
-    //Syntactical Rules: Must Be Connected
-    //==========================================
+    //=========================================
+    //Rules
+    //=========================================
 
     static SyntacticalError modeConnectedToCharacterization(Class self){
         def errormsg = 'A Mode must be connected (directly or indirectly) to a Characterization'

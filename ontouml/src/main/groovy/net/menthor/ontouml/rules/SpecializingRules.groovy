@@ -38,9 +38,9 @@ class SpecializingRules extends GenericRules {
         return list - null
     }
 
-    //==========================================
-    //Syntactical Rules: Ancestors/Descendants
-    //==========================================
+    //=========================================
+    //Rules
+    //=========================================
 
     static SyntacticalError datatypeAncestors(DataType self){
         def errormsg = 'A DataType can only have a DataType ancestor'

@@ -36,6 +36,10 @@ class ValueRules extends GenericRules {
         return list - null
     }
 
+    //=========================================
+    //Rules
+    //=========================================
+
     static SyntacticalError mediationProperties(Relationship self){
         def errormsg = 'A Mediation must be Irreflexive'
         def itsTrue = isValue(self, "isMediation", ReflexivityValue.IRREFLEXIVE, null, null, null)
