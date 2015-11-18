@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import net.menthor.ontouml.Constraint
+import net.menthor.ontouml.names.NameProcessor
 
 /** An element of the metamodel which has a name */
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
@@ -40,13 +41,11 @@ trait NamedElement implements Element {
     //=============================
 
     void setName(String name){
-        if(name!=null) this.name = name
-        else this.name = ""
-    }
-
-    void setUniqueName(String uniqueName){
-        if(uniqueName!=null) this.uniqueName = uniqueName
-        else this.uniqueName = ""
+        if(name!=null) {
+            if(uniqueName!=null) NameProcessor.remove(uniqueName)
+            this.uniqueName = NameProcessor.process(name)
+            this.name = name
+        }
     }
 
     void setText(String text){

@@ -23,10 +23,14 @@ class EcoreMapper {
         println "=================================================="
     }
 
-    private EcoreTargetMapper tgtMapper
+    private EcoreTargetMapper tgtMapper = new EcoreTargetMapper()
 
     EPackage toEcore(Model m) {
         return tgtMapper.toEcore(m)
+    }
+
+    EPackage toEcore(Model m, boolean ignorePackages) {
+        return tgtMapper.toEcore(m, ignorePackages)
     }
 
     void serialize(EPackage ecoremodel, String path){

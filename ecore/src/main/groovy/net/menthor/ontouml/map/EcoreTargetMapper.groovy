@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.BasicExtendedMetaData
 import org.eclipse.emf.ecore.util.ExtendedMetaData
 import org.eclipse.emf.ecore.xmi.XMLResource
-import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl
 import sun.security.krb5.internal.crypto.EType
 
@@ -28,7 +27,15 @@ class EcoreTargetMapper implements EMFTargetMapper {
     static EcoreFactory theCoreFactory = EcoreFactory.eINSTANCE
     static EcorePackage theCorePackage = EcorePackage.eINSTANCE
 
+    boolean ignorePackages = false
+
+    Object toEcore(Model ontomodel, boolean ignorePackage) {
+        this.ignorePackages = ignorePackage
+        return from(ontomodel)
+    }
+
     Object toEcore(Model ontomodel) {
+        ignorePackages = false
         return from(ontomodel)
     }
 
@@ -64,7 +71,7 @@ class EcoreTargetMapper implements EMFTargetMapper {
     Object clonePackage(Package ontopackage, Object tgtParentPackage) {
         EPackage ecorepackage = theCoreFactory.createEPackage()
         ecorepackage.setName(ontopackage.getName())
-        if (true) (tgtParentPackage as EPackage).getESubpackages().add(ecorepackage)
+        if (!ignorePackages) (tgtParentPackage as EPackage).getESubpackages().add(ecorepackage)
         return ecorepackage
     }
 
@@ -74,7 +81,7 @@ class EcoreTargetMapper implements EMFTargetMapper {
         ecoreclass.setAbstract(ontoclass.isAbstract_())
         ecoreclass.setName(ontoclass.getName())
         def ontopack = tgtPackagesMap.get(ontoclass.getContainer())
-        if (false) (tgtModel as EPackage).getEClassifiers().add(ecoreclass)
+        if (ignorePackages) (tgtModel as EPackage).getEClassifiers().add(ecoreclass)
         else (ontopack as EPackage).getEClassifiers().add(ecoreclass)
         return ecoreclass
     }
@@ -88,7 +95,7 @@ class EcoreTargetMapper implements EMFTargetMapper {
             ecoreEnum.getELiterals().add(elit);
         }
         def ontopack = tgtPackagesMap.get(ontodatatype.getContainer())
-        if (false) (tgtModel as EPackage).getEClassifiers().add(ecoreEnum);
+        if (ignorePackages) (tgtModel as EPackage).getEClassifiers().add(ecoreEnum);
         else (ontopack as EPackage).getEClassifiers().add(ecoreEnum);
         return ecoreEnum
     }
@@ -102,7 +109,7 @@ class EcoreTargetMapper implements EMFTargetMapper {
         ecoredt.setName(ontodatatype.getName())
         ecoredt.setSerializable(true)
         def ontopack = tgtPackagesMap.get(ontodatatype.getContainer())
-        if (false) (tgtModel as EPackage).getEClassifiers().add(ecoredt);
+        if (ignorePackages) (tgtModel as EPackage).getEClassifiers().add(ecoredt);
         else (ontopack as EPackage).getEClassifiers().add(ecoredt);
         return ecoredt
     }

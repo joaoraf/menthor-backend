@@ -1,5 +1,6 @@
-package net.menthor.ontouml
+package net.menthor.ontouml.rules
 
+import net.menthor.ontouml.Model
 import net.menthor.ontouml.rules.CardinalityRules
 import net.menthor.ontouml.rules.MetaAttributeRules
 import net.menthor.ontouml.rules.SpecializingRules
