@@ -8,7 +8,7 @@
 - /mcore: Menthor core metamodel (MCore)
 - /ontouml: OntoUML 2.0 metamodel
 - /map-refontouml: Mapping to the Reference OntoUML infrastructure
-- /map-ecore: Mapping to the ECore metamodeling langauge
+- /map-ecore: Mapping to the ECore metamodeling language
 
 **Examples**: 
 
