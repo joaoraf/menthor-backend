@@ -7,7 +7,7 @@ buildscript {
 
 group = "net.menthor"
 version = "1.0"
-description = "Compatibility with the Reference OntoUML Infrastructure"
+description = "Mappings to the Reference OntoUML Infrastructure"
 
 apply plugin: 'groovy'
 apply plugin: 'idea'
@@ -15,9 +15,8 @@ apply plugin: 'idea'
 //create a single Jar with all dependencies
 task fatJar(type: Jar) {
 	manifest {
-		attributes 'Implementation-Title': 'Compatilibity with the RefOntoUML API',
-				'Implementation-Version': version,
-				'Main-Class': 'net.menthor.ontouml.map.RefMapper'
+		attributes 'Implementation-Title': 'Mappings to the Reference OntoUML Infrastructure',
+				'Implementation-Version': version
 	}
 	baseName = project.name + '-all'
 	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
@@ -30,10 +29,9 @@ repositories {
 
 dependencies {
 	compile project(":ontouml")
-    compile project(":ecore")
+    compile project(":map-ecore")
 	compile project(":ocl")
 	compile fileTree(dir: 'lib', include: '*.jar')
-	compile "org.codehaus.groovy:groovy-all:2.4.5"
 }
 
 task wrapper(type: Wrapper) {
