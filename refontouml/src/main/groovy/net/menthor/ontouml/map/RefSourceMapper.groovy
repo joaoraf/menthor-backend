@@ -2,7 +2,6 @@ package net.menthor.ontouml.map
 
 import RefOntoUML.RefOntoUMLFactory
 import RefOntoUML.util.RefOntoUMLResourceFactoryImpl
-
 import net.menthor.ontouml.Attribute
 import net.menthor.ontouml.Class
 import net.menthor.ontouml.DataType
@@ -19,8 +18,8 @@ import net.menthor.ontouml.stereotypes.DataTypeStereotype
 import net.menthor.ontouml.stereotypes.PrimitiveStereotype
 import net.menthor.ontouml.stereotypes.QualityStereotype
 import net.menthor.ontouml.stereotypes.RelationshipStereotype
-import net.menthor.ontouml.traits.Classifier
-import net.menthor.ontouml.traits.Type
+import net.menthor.mcore.traits.MClassifier
+import net.menthor.mcore.traits.MType
 import net.menthor.ontouml.values.MeasurementValue
 import net.menthor.ontouml.values.ScaleValue
 import org.eclipse.emf.common.util.URI
@@ -217,7 +216,7 @@ class RefSourceMapper implements EMFSourceMapper {
     @Override
     Attribute cloneAttribute(Object srcAttr) {
         def refAttr = srcAttr as RefOntoUML.Property
-        Type ontotype = srcClassMap.get(refAttr.eContainer())
+        MType ontotype = srcClassMap.get(refAttr.eContainer())
         if(ontotype==null) ontotype = srcDataTypeMap.get(refAttr.eContainer())
         PrimitiveStereotype ps = getPrimitiveStereotype((RefOntoUML.PrimitiveType)refAttr.getType())
         int lower = refAttr.getLower()
@@ -233,7 +232,7 @@ class RefSourceMapper implements EMFSourceMapper {
     EndPoint cloneEndPoint(Object srcEp) {
         def ep = srcEp as RefOntoUML.Property
         Relationship rel = srcRelationshipsMap.get(ep.getAssociation())
-        Classifier ontotype = srcClassMap.get(ep.getType())
+        MClassifier ontotype = srcClassMap.get(ep.getType())
         if(ontotype==null) ontotype = srcDataTypeMap.get(ep.getType())
         if(ontotype==null) ontotype = srcRelationshipsMap.get(ep.getType())
         int lower = ep.getLower()
@@ -262,10 +261,10 @@ class RefSourceMapper implements EMFSourceMapper {
         def g = srcGen as RefOntoUML.Generalization
         RefOntoUML.Classifier general = g.getGeneral()
         RefOntoUML.Classifier specific = g.getSpecific()
-        Classifier ontogeneral = srcClassMap.get(general)
+        MClassifier ontogeneral = srcClassMap.get(general)
         if(ontogeneral==null) ontogeneral = srcDataTypeMap.get(general)
         if(ontogeneral==null) ontogeneral = srcRelationshipsMap.get(general)
-        Classifier ontospecific = srcClassMap.get(specific)
+        MClassifier ontospecific = srcClassMap.get(specific)
         if(ontospecific==null) ontospecific = srcDataTypeMap.get(specific)
         if(ontospecific==null) ontospecific = srcRelationshipsMap.get(specific)
         Generalization ontog = Factory.createGeneralization(ontogeneral, ontospecific, srcPackagesMap.get(g.eContainer()))

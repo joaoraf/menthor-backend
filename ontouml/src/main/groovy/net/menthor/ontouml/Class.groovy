@@ -4,25 +4,24 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
+import net.menthor.mcore.MClass
 import net.menthor.ontouml.stereotypes.ClassStereotype
 import net.menthor.ontouml.stereotypes.QualityStereotype
-import net.menthor.ontouml.traits.Type
 import net.menthor.ontouml.values.ClassificationValue
 import net.menthor.ontouml.values.ExistenceValue
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-class Class implements Type {
+class Class extends MClass {
 
     protected ClassStereotype stereotype
     protected boolean abstract_
     protected boolean derived
-
-    protected QualityStereotype qualityStereotype //in case of qualities
-    protected boolean extensional //collective
-    protected ExistenceValue existenceValue //identity providers
-    protected ClassificationValue classificationValue //anti-rigid classes
-    protected GeneralizationSet generalizationSet //in cast of powertypes
+    protected QualityStereotype qualityStereotype
+    protected boolean extensional
+    protected ExistenceValue existenceValue
+    protected ClassificationValue classificationValue
+    protected GeneralizationSet generalizationSet
 
     //=============================
     // Getters
@@ -484,4 +483,6 @@ class Class implements Type {
         }
         return result;
     }
+
+    String toString() { Printer.print(this) }
 }

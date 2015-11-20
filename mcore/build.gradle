@@ -1,0 +1,39 @@
+buildscript {
+	repositories {
+		jcenter()
+		mavenCentral()
+	}
+}
+
+group = "net.menthor"
+version = "1.0"
+description = "Menthor Core Metamodel"
+
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': "Menthor Core Metamodel",
+                'Implementation-Version': version
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile "org.codehaus.groovy:groovy-all:2.4.5"
+	compile "com.fasterxml.jackson.core:jackson-core:2.6.3"
+    compile "com.fasterxml.jackson.core:jackson-databind:2.6.3"
+	compile "com.fasterxml.jackson.core:jackson-annotations:2.6.3"
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.7'
+}

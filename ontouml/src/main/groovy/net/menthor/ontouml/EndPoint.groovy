@@ -4,15 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
-import net.menthor.ontouml.traits.Classifier
-import net.menthor.ontouml.traits.Property
+import net.menthor.mcore.MEndPoint
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-class EndPoint implements Property {
+class EndPoint extends MEndPoint {
 
-    protected Relationship owner
-    protected Classifier classifier
     protected List<EndPoint> subsets = []
     protected List<EndPoint> redefines = []
     protected List<EndPoint> subsettedBy = []
@@ -22,43 +19,20 @@ class EndPoint implements Property {
     // Getters
     //=============================
 
-    @JsonIgnore
-    Relationship getOwner() { return owner }
-
-    Classifier getClassifier() { return classifier }
-
     List<EndPoint> getSubsets() { return subsets }
 
     List<EndPoint> getRedefines() { return redefines }
 
     @JsonIgnore
-    List<EndPoint> getIsSubsettedBy() { return subsettedBy }
+    List<EndPoint> getSubsettedBy() { return subsettedBy }
 
     @JsonIgnore
-    List<EndPoint> getIsRedefinedBy() { return redefinedBy }
+    List<EndPoint> getRedefinedBy() { return redefinedBy }
 
     //=============================
     // Setters were overwritten to ensure
     // opposite ends in the metamodel
     //=============================
-
-    void setOwner(Relationship owner){
-        this.owner = owner
-        if(owner==null) return
-        //Ensuring opposite end
-        if(!owner.endPoints.contains(this)){
-            owner.endPoints.add(this)
-        }
-    }
-
-    void setClassifier(Classifier c){
-        classifier = c
-        if(c == null) return
-        //Ensuring opposite end
-        if(!c.getIsClassifierIn().contains(this)){
-            c.setIsClassifierIn(this)
-        }
-    }
 
     void setSubset(EndPoint superEp){
         if(superEp==null) return
@@ -140,29 +114,5 @@ class EndPoint implements Property {
         }
     }
 
-    //=============================
-    // Default values
-    //=============================
-
-    private String formatName(String name){
-        return name.trim().toLowerCase().replace(" ","_").replace("-","_")
-    }
-
-    void setDefaultName(){
-        def name = new String()
-        if (classifier != null){
-            name = classifier.getName()
-            if (name == null || name.trim().isEmpty()) {
-                name = owner.getName()
-                if(name == null || name.trim().isEmpty()){
-                    name = "endpoint"
-                }else{
-                    name = formatName(name)
-                }
-            } else {
-                name = formatName(name)
-            }
-        }
-        setName(name)
-    }
+    String toString() { Printer.print(this) }
 }

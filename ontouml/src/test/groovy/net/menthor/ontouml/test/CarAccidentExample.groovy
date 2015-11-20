@@ -4,7 +4,7 @@ import net.menthor.ontouml.Class
 import net.menthor.ontouml.Factory
 import net.menthor.ontouml.Model
 import net.menthor.ontouml.Relationship
-import net.menthor.ontouml.Serializer
+import net.menthor.mcore.MSerializer
 
 class CarAccidentExample {
 
@@ -12,7 +12,7 @@ class CarAccidentExample {
         Model m = generate()
 
         //save as JSON file
-        Serializer s = new Serializer()
+        MSerializer s = new MSerializer()
         s.toFormattedJSONFile(m,"ontouml/src/test/groovy/net/menthor/ontouml/test/","CarAccident")
 
         println "Car Accident generated"

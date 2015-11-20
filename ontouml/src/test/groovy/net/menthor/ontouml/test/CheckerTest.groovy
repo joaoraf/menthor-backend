@@ -1,6 +1,6 @@
 package net.menthor.ontouml.test
 
-import net.menthor.ontouml.rules.Checker
+import net.menthor.ontouml.checker.Checker
 import net.menthor.ontouml.Model
 
 class CheckerTest {

@@ -1,7 +1,7 @@
 package net.menthor.ontouml.map.test
 
 import net.menthor.ontouml.Model
-import net.menthor.ontouml.Serializer
+import net.menthor.mcore.MSerializer
 import net.menthor.ontouml.map.RefMapper
 
 class RefMapperTest {
@@ -9,7 +9,7 @@ class RefMapperTest {
     static void main(String[] args){
 
         //read example in OntoUML
-        Serializer s = new Serializer()
+        MSerializer s = new MSerializer()
         Model m = s.fromJSONFile("refontouml/src/test/groovy/net/menthor/ontouml/map/test/CarAccident.json")
         println m
 

@@ -4,16 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
+import net.menthor.mcore.MAttribute
 import net.menthor.ontouml.stereotypes.PrimitiveStereotype
-import net.menthor.ontouml.traits.Property
-import net.menthor.ontouml.traits.Type
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-class Attribute implements Property {
+class Attribute extends MAttribute {
 
     protected PrimitiveStereotype stereotype
-    protected Type owner
 
     //=============================
     // Getters
@@ -21,22 +19,9 @@ class Attribute implements Property {
 
     PrimitiveStereotype getStereotype() { return stereotype }
 
-    @JsonIgnore
-    Type getOwner() { return owner }
-
     //=============================
-    // Setters were overwritten to ensure
-    // opposite ends in the metamodel
+    // Setters
     //=============================
-
-    void setOwner(Type owner){
-        this.owner = owner
-        if(owner==null) return
-        //Ensuring opposite end
-        if(!owner.attributes.contains(this)){
-            owner.attributes.add(this)
-        }
-    }
 
     void setStereotype(PrimitiveStereotype stereotype){
         this.stereotype = stereotype
@@ -71,7 +56,5 @@ class Attribute implements Property {
         return stereotype==PrimitiveStereotype.STRING;
     }
 
-    String toString(){
-        return
-    }
+    String toString() { Printer.print(this) }
 }

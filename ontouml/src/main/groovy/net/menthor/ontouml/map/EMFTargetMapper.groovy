@@ -9,7 +9,7 @@ import net.menthor.ontouml.Generalization
 import net.menthor.ontouml.GeneralizationSet
 import net.menthor.ontouml.Model
 import net.menthor.ontouml.Relationship
-import net.menthor.ontouml.traits.Container
+import net.menthor.mcore.traits.MContainer
 
 /* A Generic trait to map OntoUML to a target language which is based on EMF packaging style.
  * This trait can be used to transform OntoUML into UML, Ecore,  RefOntoUML, etc */
@@ -55,7 +55,7 @@ trait EMFTargetMapper {
         tgtPackagesMap.put(ontomodel as Package,tgtModel)
     }
 
-    void runPackages(Container ontopackage, Object tgtParentPackage){
+    void runPackages(MContainer ontopackage, Object tgtParentPackage){
         ontopackage.getElements().each{ ontoelem ->
             if(ontoelem instanceof Package){
                 def tgtpackage = clonePackage(ontoelem as Package, tgtParentPackage)

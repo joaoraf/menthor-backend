@@ -11,7 +11,7 @@
             "derived": false,
             "extensional": false,
             "name": "Person",
-            "uniqueName": "Person1"
+            "uniqueName": "Person"
         },
         {
             "@class": "net.menthor.ontouml.Class",
@@ -21,7 +21,7 @@
             "derived": false,
             "extensional": false,
             "name": "Vehicle",
-            "uniqueName": "Vehicle1"
+            "uniqueName": "Vehicle"
         },
         {
             "@class": "net.menthor.ontouml.Class",
@@ -31,7 +31,7 @@
             "derived": false,
             "extensional": false,
             "name": "Roadway",
-            "uniqueName": "Roadway1"
+            "uniqueName": "Roadway"
         },
         {
             "@class": "net.menthor.ontouml.Class",
@@ -41,7 +41,7 @@
             "derived": false,
             "extensional": false,
             "name": "Man",
-            "uniqueName": "Man1"
+            "uniqueName": "Man"
         },
         {
             "@class": "net.menthor.ontouml.Class",
@@ -51,7 +51,7 @@
             "derived": false,
             "extensional": false,
             "name": "Woman",
-            "uniqueName": "Woman1"
+            "uniqueName": "Woman"
         },
         {
             "@class": "net.menthor.ontouml.GeneralizationSet",
@@ -83,7 +83,7 @@
             "derived": false,
             "extensional": false,
             "name": "Living",
-            "uniqueName": "Living1"
+            "uniqueName": "Living"
         },
         {
             "@class": "net.menthor.ontouml.Class",
@@ -93,7 +93,7 @@
             "derived": false,
             "extensional": false,
             "name": "Deceased",
-            "uniqueName": "Deceased1"
+            "uniqueName": "Deceased"
         },
         {
             "@class": "net.menthor.ontouml.GeneralizationSet",
@@ -125,7 +125,7 @@
             "derived": false,
             "extensional": false,
             "name": "Traveler",
-            "uniqueName": "Traveler1"
+            "uniqueName": "Traveler"
         },
         {
             "@class": "net.menthor.ontouml.Class",
@@ -135,7 +135,7 @@
             "derived": false,
             "extensional": false,
             "name": "Victim",
-            "uniqueName": "Victim1"
+            "uniqueName": "Victim"
         },
         {
             "@class": "net.menthor.ontouml.Class",
@@ -145,7 +145,7 @@
             "derived": false,
             "extensional": false,
             "name": "CrashedVehicle",
-            "uniqueName": "CrashedVehicle1"
+            "uniqueName": "CrashedVehicle"
         },
         {
             "@class": "net.menthor.ontouml.Class",
@@ -155,7 +155,7 @@
             "derived": false,
             "extensional": false,
             "name": "Traffic Accident",
-            "uniqueName": "TrafficAccident1"
+            "uniqueName": "TrafficAccident"
         },
         {
             "@class": "net.menthor.ontouml.Class",
@@ -165,7 +165,7 @@
             "derived": false,
             "extensional": false,
             "name": "Rear End Collision",
-            "uniqueName": "RearEndCollision1"
+            "uniqueName": "RearEndCollision"
         },
         {
             "@class": "net.menthor.ontouml.Class",
@@ -175,7 +175,7 @@
             "derived": false,
             "extensional": false,
             "name": "Travel",
-            "uniqueName": "Travel1"
+            "uniqueName": "Travel"
         },
         {
             "@class": "net.menthor.ontouml.Generalization",
@@ -209,27 +209,27 @@
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 26,
                     "classifier": 18,
-                    "lowerBound": 1,
-                    "dependency": false,
-                    "upperBound": -1,
                     "derived": false,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "upperBound": -1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 27,
                     "classifier": 4,
-                    "lowerBound": 1,
-                    "dependency": true,
-                    "upperBound": 1,
                     "derived": false,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "upperBound": 1,
                     "ordered": false
                 }
             ],
             "stereotype": "MEDIATION",
             "reflexivityValue": "IRREFLEXIVE",
             "name": "occurs",
-            "uniqueName": "occurs1"
+            "uniqueName": "occurs"
         },
         {
             "@class": "net.menthor.ontouml.Relationship",
@@ -239,27 +239,27 @@
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 29,
                     "classifier": 18,
-                    "lowerBound": 1,
-                    "dependency": false,
-                    "upperBound": 1,
                     "derived": false,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "upperBound": 1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 30,
                     "classifier": 16,
-                    "lowerBound": 1,
-                    "dependency": true,
-                    "upperBound": -1,
                     "derived": false,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "upperBound": -1,
                     "ordered": false
                 }
             ],
             "stereotype": "MEDIATION",
             "reflexivityValue": "IRREFLEXIVE",
             "name": "has",
-            "uniqueName": "has1"
+            "uniqueName": "has"
         },
         {
             "@class": "net.menthor.ontouml.Relationship",
@@ -269,27 +269,27 @@
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 32,
                     "classifier": 18,
-                    "lowerBound": 1,
-                    "dependency": false,
-                    "upperBound": 1,
                     "derived": false,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "upperBound": 1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 33,
                     "classifier": 17,
-                    "lowerBound": 1,
-                    "dependency": true,
-                    "upperBound": -1,
                     "derived": false,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "upperBound": -1,
                     "ordered": false
                 }
             ],
             "stereotype": "MEDIATION",
             "reflexivityValue": "IRREFLEXIVE",
             "name": "involves",
-            "uniqueName": "involves1"
+            "uniqueName": "involves"
         },
         {
             "@class": "net.menthor.ontouml.Relationship",
@@ -299,20 +299,20 @@
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 35,
                     "classifier": 20,
-                    "lowerBound": 1,
-                    "dependency": false,
-                    "upperBound": 1,
                     "derived": false,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "upperBound": 1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 36,
                     "classifier": 15,
-                    "lowerBound": 1,
-                    "dependency": true,
-                    "upperBound": -1,
                     "derived": false,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "upperBound": -1,
                     "ordered": false
                 }
             ],
@@ -329,27 +329,27 @@
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 38,
                     "classifier": 20,
-                    "lowerBound": 1,
-                    "dependency": false,
-                    "upperBound": 1,
                     "derived": false,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "upperBound": 1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 39,
                     "classifier": 3,
-                    "lowerBound": 1,
-                    "dependency": true,
-                    "upperBound": 1,
                     "derived": false,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "upperBound": 1,
                     "ordered": false
                 }
             ],
             "stereotype": "MEDIATION",
             "reflexivityValue": "IRREFLEXIVE",
             "name": "made by",
-            "uniqueName": "madeby1"
+            "uniqueName": "madeby"
         },
         {
             "@class": "net.menthor.ontouml.Relationship",
@@ -359,26 +359,26 @@
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 41,
                     "classifier": 16,
-                    "lowerBound": 1,
-                    "dependency": false,
-                    "upperBound": -1,
                     "derived": false,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "upperBound": -1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 42,
                     "classifier": 4,
-                    "lowerBound": 1,
-                    "dependency": false,
-                    "upperBound": 1,
                     "derived": false,
+                    "dependency": false,
+                    "lowerBound": 1,
+                    "upperBound": 1,
                     "ordered": false
                 }
             ],
             "stereotype": "MATERIAL",
             "name": "has been victim in",
-            "uniqueName": "hasbeenvictimin1"
+            "uniqueName": "hasbeenvictimin"
         },
         {
             "@class": "net.menthor.ontouml.Relationship",
@@ -388,56 +388,26 @@
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 44,
                     "classifier": 40,
-                    "lowerBound": 1,
-                    "dependency": true,
-                    "upperBound": -1,
                     "derived": false,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "upperBound": -1,
                     "ordered": false
                 },
                 {
                     "@class": "net.menthor.ontouml.EndPoint",
                     "@id": 45,
                     "classifier": 18,
-                    "lowerBound": 1,
-                    "dependency": true,
-                    "upperBound": -1,
                     "derived": false,
+                    "dependency": true,
+                    "lowerBound": 1,
+                    "upperBound": -1,
                     "ordered": false
                 }
             ],
             "stereotype": "DERIVATION",
-            "uniqueName": "7"
-        },
-        {
-            "@class": "net.menthor.ontouml.Class",
-            "@id": 46,
-            "stereotype": "KIND",
-            "abstract_": false,
-            "derived": false,
-            "extensional": false,
-            "name": "John",
-            "uniqueName": "John1"
-        },
-        {
-            "@class": "net.menthor.ontouml.Class",
-            "@id": 47,
-            "stereotype": "KIND",
-            "abstract_": false,
-            "derived": false,
-            "extensional": false,
-            "name": "John",
-            "uniqueName": "John2"
-        },
-        {
-            "@class": "net.menthor.ontouml.Class",
-            "@id": 48,
-            "stereotype": "KIND",
-            "abstract_": false,
-            "derived": false,
-            "extensional": false,
-            "name": "John",
-            "uniqueName": "John3"
+            "uniqueName": "Relationship"
         }
     ],
-    "uniqueName": "CarAccident1"
+    "uniqueName": "CarAccident"
 }

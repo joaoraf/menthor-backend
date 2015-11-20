@@ -5,27 +5,29 @@ import net.menthor.ontouml.stereotypes.ConstraintStereotype
 import net.menthor.ontouml.stereotypes.DataTypeStereotype
 import net.menthor.ontouml.stereotypes.PrimitiveStereotype
 import net.menthor.ontouml.stereotypes.RelationshipStereotype
-import net.menthor.ontouml.traits.Container
-import net.menthor.ontouml.traits.NamedElement
-import net.menthor.ontouml.traits.Type
-import net.menthor.ontouml.traits.Classifier
+import net.menthor.mcore.traits.MContainer
+import net.menthor.mcore.traits.MNamedElement
+import net.menthor.mcore.traits.MType
+import net.menthor.mcore.traits.MClassifier
 
 class Factory {
 
-    static Package createPackage(String name, Container container){
+    private Factory(){}
+
+    static Package createModel(String name) {
+        Model model = new Model()
+        model.setName(name)
+        return model
+    }
+
+    static Package createPackage(String name, MContainer container){
         Package p = new Package()
         p.setName(name)
         p.setContainer(container)
         return p
     }
 
-    static Model createModel(String name){
-        Model p = new Model()
-        p.setName(name)
-        return p
-    }
-
-    static Generalization createGeneralization (Classifier specific, Classifier general, Container container){
+    static Generalization createGeneralization (MClassifier specific, MClassifier general, MContainer container){
         Generalization g = new Generalization()
         g.setGeneral(general)
         g.setSpecific(specific)
@@ -33,7 +35,7 @@ class Factory {
         return g;
     }
 
-    static GeneralizationSet createGeneralizationSet(boolean isCovering, boolean isDisjoint, Container container){
+    static GeneralizationSet createGeneralizationSet(boolean isCovering, boolean isDisjoint, MContainer container){
         GeneralizationSet gs = new GeneralizationSet()
         gs.setIsCovering(isCovering)
         gs.setIsDisjoint(isDisjoint)
@@ -41,13 +43,13 @@ class Factory {
         return gs
     }
 
-    static GeneralizationSet createGeneralizationSet(boolean isCovering, boolean isDisjoint, List generalizations, Container container) {
+    static GeneralizationSet createGeneralizationSet(boolean isCovering, boolean isDisjoint, List generalizations, MContainer container) {
         GeneralizationSet gs = createGeneralizationSet(isCovering,isDisjoint,container);
         gs.setGeneralizations(generalizations)
         return gs;
     }
 
-    static GeneralizationSet createPartition(List<Classifier> specifics, Classifier general, Container container){
+    static GeneralizationSet createPartition(List<MClassifier> specifics, MClassifier general, MContainer container){
         GeneralizationSet gs = createGeneralizationSet(true,true,container)
         specifics.each{ spec ->
             Generalization g = createGeneralization(spec, general, container)
@@ -56,28 +58,28 @@ class Factory {
         return gs;
     }
 
-    static Relationship createRelationship(RelationshipStereotype stereotype, String name, Container container) {
+    static Relationship createRelationship(RelationshipStereotype stereotype, String name, MContainer container) {
         Relationship rel = new Relationship()
         rel.setStereotype(stereotype)
+        rel.setDefaultEndPoints(2)
         rel.setName(name)
         rel.setContainer(container)
         return rel
     }
 
-    static Relationship createRelationship(RelationshipStereotype stereotype, Classifier source, Classifier target, Container container){
+    static Relationship createRelationship(RelationshipStereotype stereotype, MClassifier source, MClassifier target, MContainer container){
         Relationship rel = createRelationship(stereotype,"",container)
-        rel.setDefaultEndPoints(2)
         rel.setDefaultReflexivityValue()
         rel.setDefaultSymmetryValue()
         rel.setDefaultTransitivityValue()
         rel.setDefaultCyclicityValue()
         rel.getEndPoints().get(0).setClassifier(source)
         rel.getEndPoints().get(1).setClassifier(target)
-        return rel;
+        return rel
     }
 
-    static Relationship createRelationship(RelationshipStereotype stereotype, Classifier source, int srcLower, int srcUpper, String name,
-        Classifier target, int tgtLower, int tgtUpper, Container container) {
+    static Relationship createRelationship(RelationshipStereotype stereotype, MClassifier source, int srcLower, int srcUpper, String name,
+        MClassifier target, int tgtLower, int tgtUpper, MContainer container) {
         Relationship rel = createRelationship(stereotype, source, target, container)
         rel.setName(name)
         rel.sourceEndPoint().setCardinalities(srcLower, srcUpper)
@@ -85,22 +87,22 @@ class Factory {
         return rel
     }
 
-    static Class createClass(ClassStereotype stereotype, String name, Container container){
+    static Class createClass(ClassStereotype stereotype, String name, MContainer container){
         Class c = new Class()
+        c.setName(name)
+        c.setContainer(container)
         c.setStereotype(stereotype)
         if(c.isMixinClass()) {
             c.setIsAbstract(true)
         }
-        c.setName(name)
-        c.setContainer(container)
-        return c;
+        return c
     }
 
-    static DataType createDataType(DataTypeStereotype stereotype, String name, Container container){
+    static DataType createDataType(DataTypeStereotype stereotype, String name, MContainer container){
         DataType dt = new DataType()
-        dt.setStereotype(stereotype)
         dt.setName(name)
         dt.setContainer(container)
+        dt.setStereotype(stereotype)
         return dt;
     }
 
@@ -111,27 +113,21 @@ class Factory {
     }
 
     static List<Literal> createLiterals(Collection<String> textValues){
-        List<Literal> result = new ArrayList<Literal>()
+        List<Literal> result = []
         textValues.each{ v ->
             result.add(createLiteral(v))
         }
         return result;
     }
 
-    static DataType createEnumeration(String name, Collection<String> textValues, Container container){
+    static DataType createEnumeration(String name, Collection<String> textValues, MContainer container){
         DataType enu = createDataType(DataTypeStereotype.ENUMERATION,name,container);
         List<Literal> literals = createLiterals(textValues)
         enu.setLiterals(literals)
-        enu.setContainer(container)
         return enu;
     }
 
-    static Attribute createAttribute (Type owner, PrimitiveStereotype primitive){
-        Attribute attribute = createAttribute(owner, primitive, 1, 1, "", false, false)
-        return attribute
-    }
-
-    static Attribute createAttribute (Type owner, PrimitiveStereotype primitive, int lower, int upper){
+    static Attribute createAttribute (MType owner, PrimitiveStereotype primitive, int lower, int upper){
         Attribute attribute = new Attribute()
         attribute.setStereotype(primitive)
         attribute.setOwner(owner)
@@ -142,7 +138,7 @@ class Factory {
         return attribute
     }
 
-    static Attribute createAttribute (Type owner, PrimitiveStereotype primitive, int lower, int upper, String name, boolean isDerived, boolean isDependency){
+    static Attribute createAttribute (MType owner, PrimitiveStereotype primitive, int lower, int upper, String name, boolean isDerived, boolean isDependency){
         Attribute attribute = createAttribute(owner, primitive, lower, upper)
         attribute.setName("")
         attribute.setDerived(isDerived)
@@ -150,11 +146,12 @@ class Factory {
         return attribute;
     }
 
-    static EndPoint createEndPoint(Relationship rel, Classifier classifier, int lower, int upper){
-      return createEndPoint(rel, classifier, lower, upper, "");
+    static Attribute createAttribute (MType owner, PrimitiveStereotype primitive){
+        Attribute attribute = createAttribute(owner, primitive, 1, 1, "", false, false)
+        return attribute
     }
 
-    static EndPoint createEndPoint(Relationship rel, Classifier classifier, int lower, int upper, String name){
+    static EndPoint createEndPoint(Relationship rel, MClassifier classifier, int lower, int upper, String name){
         EndPoint ep = new EndPoint()
         ep.setClassifier(classifier)
         ep.setLowerBound(lower)
@@ -164,20 +161,24 @@ class Factory {
         return ep;
     }
 
-    static EndPoint createEndPoint (Relationship rel, Classifier classifier, int lower, int upper, String name, boolean isDerived, boolean isDependency){
+    static EndPoint createEndPoint(Relationship rel, MClassifier classifier, int lower, int upper){
+        return createEndPoint(rel, classifier, lower, upper, "");
+    }
+
+    static EndPoint createEndPoint (Relationship rel, MClassifier classifier, int lower, int upper, String name, boolean isDerived, boolean isDependency){
         EndPoint endpoint = createEndPoint(rel, classifier, lower, upper, name)
         endpoint.setDerived(isDerived)
         endpoint.setDependency(isDependency)
         return endpoint;
     }
 
-    static Constraint createConstraint(NamedElement context, ConstraintStereotype stereotype, String identifier, String expression, Container container){
-        Constraint c = new Constraint()
-        c.setStereotype(stereotype)
+    static Constraint createConstraint(MNamedElement context, ConstraintStereotype stereotype, String name, String condition, MContainer container){
+        Constraint c =  Constraint()
         c.setContext(context)
-        c.setIdentifier(identifier)
-        c.setExpression(expression)
+        c.setName(name)
+        c.setCondition(condition)
         c.setContainer(container)
+        c.setStereotype(stereotype)
         return c
     }
 }

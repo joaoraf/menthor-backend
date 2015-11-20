@@ -2,36 +2,20 @@ package net.menthor.ontouml.map
 
 import RefOntoUML.RefOntoUMLFactory
 import RefOntoUML.util.RefOntoUMLResourceFactoryImpl
-
 import net.menthor.ontouml.Attribute
 import net.menthor.ontouml.DataType
 import net.menthor.ontouml.EndPoint
 import net.menthor.ontouml.Generalization
 import net.menthor.ontouml.GeneralizationSet
-import net.menthor.ontouml.Literal
 import net.menthor.ontouml.Model
-import net.menthor.ontouml.Factory
 import net.menthor.ontouml.Package
 import net.menthor.ontouml.Class
 import net.menthor.ontouml.Relationship
-import net.menthor.ontouml.stereotypes.ClassStereotype
-import net.menthor.ontouml.stereotypes.DataTypeStereotype
-import net.menthor.ontouml.stereotypes.PrimitiveStereotype
-import net.menthor.ontouml.stereotypes.QualityStereotype
-import net.menthor.ontouml.stereotypes.RelationshipStereotype
-import net.menthor.ontouml.traits.Classifier
-import net.menthor.ontouml.traits.Type
-import net.menthor.ontouml.values.MeasurementValue
-import net.menthor.ontouml.values.ScaleValue
+import net.menthor.mcore.traits.MClassifier
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.xmi.XMLResource
-import org.eclipse.emf.ecore.xmi.impl.XMLParserPoolImpl
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl
-
-import java.text.Normalizer;
 
 class RefTargetMapper implements EMFTargetMapper {
 
@@ -235,8 +219,8 @@ class RefTargetMapper implements EMFTargetMapper {
 
     @Override
     Object cloneGeneralization(Generalization g) {
-        Classifier general = g.getGeneral()
-        Classifier specific = g.getSpecific()
+        MClassifier general = g.getGeneral()
+        MClassifier specific = g.getSpecific()
         RefOntoUML.Classifier refGeneral=null
         if(general instanceof Class) refGeneral= this.tgtClassMap.get(general)
         if(general instanceof DataType) refGeneral = this.tgtDataTypeMap.get(general)

@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
+import net.menthor.mcore.MDataType
 import net.menthor.ontouml.stereotypes.DataTypeStereotype
 import net.menthor.ontouml.values.MeasurementValue
 import net.menthor.ontouml.values.ScaleValue
-import net.menthor.ontouml.traits.Type
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-class DataType implements Type {
+class DataType extends MDataType {
 
     protected DataTypeStereotype stereotype
 
@@ -27,7 +27,6 @@ class DataType implements Type {
     protected DataType ownerDomain
 
     //in case of enumerations
-    protected List<Literal> literals = []
     protected DataType ownerStructure
 
     //=============================
@@ -50,8 +49,6 @@ class DataType implements Type {
 
     @JsonIgnore
     DataType getOwnerDomain() { return ownerDomain }
-
-    List<Literal> getLiterals() { return literals }
 
     DataType getOwnerStructure() { return ownerStructure }
 
@@ -97,25 +94,6 @@ class DataType implements Type {
         if(domain==null) return
         if(!domain.dimensions.contains(this)){
             domain.dimensions.add(this)
-        }
-    }
-
-    void setLiteral(Literal literal){
-        if(literal==null) return
-        if(!literals.contains(literal)){
-            literals.add(literal)
-        }
-        //Ensuring opposite end
-        literal.setOwner(this)
-    }
-
-    void setLiterals(List<Literal> literals){
-        if(literals==null || literals==[]){
-            this.literals.clear()
-            return
-        }
-        literals.each{ l ->
-            setLiteral(l)
         }
     }
 
@@ -191,4 +169,6 @@ class DataType implements Type {
 
     @JsonIgnore
     boolean isStructure() { isDimension() || isDomain() }
+
+    String toString() { Printer.print(this) }
 }

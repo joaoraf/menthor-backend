@@ -3,27 +3,17 @@ package net.menthor.ontouml
 import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
-import net.menthor.ontouml.traits.Classifier
-import net.menthor.ontouml.traits.ContainedElement
+import net.menthor.mcore.MGeneralizationSet
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-class GeneralizationSet implements ContainedElement {
+class GeneralizationSet extends MGeneralizationSet {
 
-    protected boolean covering
-    protected boolean disjoint
-    protected List<Generalization> generalizations = []
     protected Class highorder
 
     //=============================
     //Getters
     //=============================
-
-    boolean isCovering() { return covering }
-
-    boolean isDisjoint() { return disjoint }
-
-    List<Generalization> getGeneralizations() { return generalizations }
 
     Class getHighorder() { return highorder }
 
@@ -32,29 +22,6 @@ class GeneralizationSet implements ContainedElement {
     // opposite ends in the metamodel
     //=============================
 
-    void setIsCovering(boolean isCovering) { this.covering = isCovering }
-
-    void setIsDisjoint(boolean isDisjoint) { this.disjoint = isDisjoint }
-
-    void setGeneralization(Generalization g){
-        if(g==null) return
-        if(!generalizations.contains(g)){
-            generalizations.add(g)
-        }
-        //Ensure the opposite end
-        g.setGeneralizationSet(this)
-    }
-
-    void setGeneralizations(List<Generalization> gens){
-        if(gens==null||gens==[]){
-            this.generalizations.clear()
-            return
-        }
-        gens.each { g ->
-            setGeneralization(g)
-        }
-    }
-
     void setHighorder(Class highorder){
         this.highorder = highorder
         if(highorder==null) return
@@ -62,20 +29,5 @@ class GeneralizationSet implements ContainedElement {
         highorder.generalizationSet = this
     }
 
-    //=============================
-    // General and Specifics
-    //=============================
-
-    Classifier general(){
-        if(generalizations.size()>0) { return generalizations.get(0).getGeneral(); }
-        else { return null; }
-    }
-
-    List<Classifier> specifics(){
-        def result = []
-        generalizations.each{ g ->
-            result.add(g.specific);
-        }
-        return result;
-    }
+    String toString() { Printer.print(this) }
 }

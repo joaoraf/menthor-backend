@@ -4,21 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
+import net.menthor.mcore.MRelationship
 import net.menthor.ontouml.stereotypes.RelationshipStereotype
 import net.menthor.ontouml.values.ReflexivityValue
 import net.menthor.ontouml.values.SymmetryValue
-import net.menthor.ontouml.Class
 import net.menthor.ontouml.stereotypes.ParticipationStereotype
 import net.menthor.ontouml.stereotypes.TemporalStereotype
-import net.menthor.ontouml.traits.Classifier
 import net.menthor.ontouml.values.CiclicityValue
 import net.menthor.ontouml.values.TransitivityValue
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-class Relationship implements Classifier {
-
-    protected List<EndPoint> endPoints = []
+class Relationship extends MRelationship {
 
     protected RelationshipStereotype stereotype
     protected TemporalStereotype temporalStereotype
@@ -32,8 +29,6 @@ class Relationship implements Classifier {
     //=============================
     // Getters
     //=============================
-
-    List<EndPoint> getEndPoints() { return endPoints }
 
     RelationshipStereotype getStereotype() { return stereotype }
 
@@ -67,25 +62,6 @@ class Relationship implements Classifier {
     void setTransitivityValue(TransitivityValue transitivityValue) { this.transitivityValue = transitivityValue }
 
     void setCiclicityValue(CiclicityValue ciclicityValue) { this.ciclicityValue = ciclicityValue }
-
-    void setEndPoint(EndPoint ep){
-        if(ep==null) return
-        if(!endPoints.contains(ep)){
-            endPoints.add(ep)
-        }
-        //Ensuring opposite end
-        ep.setOwner(this)
-    }
-
-    void setEndPoints(List<EndPoint> eps){
-        if(eps==null || eps==[]){
-            this.endPoints.clear()
-            return
-        }
-        eps.each{ ep->
-            setEndPoint(ep)
-        }
-    }
 
     //=============================
     // Default values
@@ -167,10 +143,11 @@ class Relationship implements Classifier {
         }
     }
 
+    @Override
     void setDefaultEndPoints(int arity){
         for (int i = 1; i <= arity; i++) {
             EndPoint ep = new EndPoint();
-            ep.setCardinalities(1,1)
+            ep.setCardinalities(1, 1)
             setEndPoint(ep)
         }
         setDefaultDependencyValue()
@@ -238,12 +215,6 @@ class Relationship implements Classifier {
     }
 
     @JsonIgnore
-    boolean isBinary() { return endPoints.size()==2 }
-
-    @JsonIgnore
-    boolean isTernary() { return endPoints.size()==3 }
-
-    @JsonIgnore
     boolean isStarts(){ isTemporal() && temporalStereotype==TemporalStereotype.STARTS }
 
     @JsonIgnore
@@ -272,85 +243,6 @@ class Relationship implements Classifier {
 
     @JsonIgnore
     boolean isChange() { return isParticipation() && participationStereotype == ParticipationStereotype.CHANGE }
-
-    //================================
-    //Source and Target
-    //================================
-
-    /** Returns the source (first end-point) of this relationship */
-    EndPoint sourceEndPoint(){
-        if(endPoints.size()>0){ return endPoints.get(0) }
-        return null;
-    }
-    /** Returns the target (second end-point) of this relationship */
-    EndPoint targetEndPoint(){
-        if(endPoints.size()>1){ return endPoints.get(1) }
-        return null;
-    }
-    /** Returns the source (first end-classifier) of this relationship */
-    Classifier source(){
-        if(sourceEndPoint()!=null){ return sourceEndPoint().getClassifier() }
-        return null;
-    }
-    /** Returns the target (second end-classifier) of this relationship */
-    Classifier target(){
-        if(targetEndPoint()!=null){ return targetEndPoint().getClassifier() }
-        return null;
-    }
-
-    @JsonIgnore
-    boolean isSourceAClass(){ return (sourceClass()==null) ? false : true }
-
-    /** Returns the source (first end-class) of this relationship */
-    Class sourceClass() {
-        if(source()!=null) return source() as Class
-        return null;
-    }
-
-    @JsonIgnore
-    boolean isTargetAClass(){ return (targetClass()==null) ? false : true }
-
-    /** Returns the target (second end-class) of this relationship */
-    Class targetClass(){
-        if(target()!=null) return target() as Class
-        return null;
-    }
-
-    @JsonIgnore
-    boolean isSourceADataType(){ return (sourceDataType()==null) ? false : true }
-
-    /** Returns the source (first end-dataType) of this relationship */
-    DataType sourceDataType(){
-        if(source()!=null) return source() as DataType
-        return null;
-    }
-
-    @JsonIgnore
-    boolean isTargetADataType(){ return (targetDataType()==null) ? false : true }
-
-    /** Returns the target (second end-dataType) of this relationship */
-    DataType targetDataType(){
-        if(target()!=null) return target() as DataType
-        return null;
-    }
-
-    @JsonIgnore
-    boolean isSourceARelationship(){ return (sourceRelationship()==null) ? false : true }
-
-    /** Returns the source (first end-relationship) of this relationship */
-    Relationship sourceRelationship() {
-        if(source()!=null) return source() as Relationship
-        return null;
-    }
-
-    @JsonIgnore
-    boolean isTargetARelationship(){ return (targetRelationship()==null) ? false : true }
-
-    /** Returns the target (second end-relationship) of this relationship */
-    Relationship targetRelationship(){
-        if(target()!=null) return target() as Relationship
-        return null;
-    }
 
     @JsonIgnore
     boolean isTargetATruthMaker(){ return isTargetAClass() && ((Class)target()).isTruthMaker() }
@@ -423,23 +315,6 @@ class Relationship implements Classifier {
     //Meta-Attributes Checking
     //================================
 
-    /** Checks if this relationship is derived i.e. checking if there is at least one end-point which is derived */
-    @JsonIgnore
-    boolean isDerived(){
-       endPoints.each{ ep ->
-            if (ep.isDerived()) return true;
-        }
-        return false;
-    }
-
-    /** Checks if there is at least one end-point in this relationship of classifier c. */
-    @JsonIgnore
-    boolean isConnecting(Classifier c){
-        return endPoints.any{ ep ->
-            ep.getClassifier().equals(c)
-        }
-    }
-
     /** A part is essential if the target end of a meronymic relationship is dependent on the rigid source type */
     @JsonIgnore
     boolean isPartEssential() {
@@ -504,4 +379,6 @@ class Relationship implements Classifier {
             return false
         }
     }
+
+    String toString() { Printer.print(this) }
 }
