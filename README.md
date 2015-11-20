@@ -1,4 +1,4 @@
-### Menthor - Backend Infrastructure
+### Menthor Backend Infrastructure
 
 - To compile/build the project, on Terminal, type **gradle wrapper** and then **gradlew build**. 
 - To generate a Fat Jar for a given sub-project just type **gradle fatJar**
